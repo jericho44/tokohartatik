@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,8 @@ Route::group(
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', 'CategoryController');
 
-
-        // Route::resource('products', 'ProductController');
+        Route::resource('products', 'ProductController');
+        Route::delete('products/{id}/delete-permatent', [ProductController::class, 'deletePermanent'])->name('products.deletePermanent');
         // Route::get('products/{productID}/images', 'ProductController@images')->name('products.images');
         // Route::get('products/{productID}/add-image', 'ProductController@addImage')->name('products.add_image');
         // Route::post('products/images/{productID}', 'ProductController@uploadImage')->name('products.upload_image');

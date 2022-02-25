@@ -20,9 +20,10 @@
             </div>
             <div class="form-group">
                 <label for="parent_id" class="form-control-label">Parent</label>
-                {!! General::selectMultiLevel('parent_id', $categories, ['class' => 'form-control', 'selected'=>
-                !empty(old('parent_id') ? old('parent_id') : !empty($categories['parent_id']) ? $categories['parent_id']
-                : ''), 'placeholder'=> '-- Choose Category --']) !!}
+                {!! General::selectMultiLevel('parent_id', $categories, ['class' => 'form-control', 'selected' =>
+                !empty(old('parent_id')) ? old('parent_id') : (!empty($category['parent_id']) ? $category['parent_id'] :
+                ''),
+                'placeholder' => '-- Pilih Kategori --']) !!}
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Tambah Kategori</button>

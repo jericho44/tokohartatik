@@ -32,7 +32,7 @@ class General
         }
 
         $selected = [];
-        if (isset($options['selected'])) {
+        if (!empty($options['selected'])) {
             $selected = is_array($options['selected']) ? $options['selected'] : [$options['selected']];
         }
 
@@ -46,7 +46,7 @@ class General
         }
 
         $multiple = '';
-        if (isset($options['multiple'])) {
+        if (!empty($options['multiple'])) {
             $multiple = 'multiple';
         }
 

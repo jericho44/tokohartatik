@@ -49,6 +49,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    {{ $categories->links() }}
                 </div>
                 <div class="card-footer text-right">
                     <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
