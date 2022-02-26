@@ -26,12 +26,12 @@ Route::group(
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', 'CategoryController');
 
-        Route::resource('products', 'ProductController');
         Route::delete('products/{id}/delete-permatent', [ProductController::class, 'deletePermanent'])->name('products.deletePermanent');
-        // Route::get('products/{productID}/images', 'ProductController@images')->name('products.images');
-        // Route::get('products/{productID}/add-image', 'ProductController@addImage')->name('products.add_image');
-        // Route::post('products/images/{productID}', 'ProductController@uploadImage')->name('products.upload_image');
-        // Route::delete('products/images/{imageID}', 'ProductController@removeImage')->name('products.remove_image');
+        Route::get('products/images', 'ProductController@images')->name('products.images');
+        Route::get('products/{id}/add-image', 'ProductController@addImage')->name('products.add_image');
+        Route::post('products/imagess/{id}', 'ProductController@uploadImage')->name('products.upload_image');
+        Route::delete('products/imagess/{imageID}', 'ProductController@removeImage')->name('products.remove_image');
+        Route::resource('products', 'ProductController');
 
         // Route::resource('attributes', 'AttributeController');
         // Route::get('attributes/{attributeID}/options', 'AttributeController@options')->name('attributes.options');

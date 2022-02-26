@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductImageRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 use Str;
@@ -95,6 +97,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        if (empty($id)) {
+            return redirect()->route('products.index');
+        }
+
         $product = Product::findOrFail($id);
         $categories = Category::orderBy('name', 'ASC')->get()->toArray();
         $categoryIDs = $product->categories->pluck('id')->toArray();
@@ -160,5 +166,47 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index');
+    }
+
+    public function images()
+    {
+        // $products = Product::orderBy('name', 'ASC')->paginate(10);
+        $products = Product::with('productImages')->orderBy('name', 'ASC')->paginate(10);
+
+        return view('pages.admin.products.images', compact('products'));
+    }
+
+    public function addImage($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('pages.admin.products.add_image', compact('product'));
+    }
+
+    public function uploadImage(ProductImageRequest $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $name = $product->slug . '-' . $product->sku;
+            $fileName = $name . '.' . $image->getClientOriginalExtension();
+
+            $folder = '/uploads/images';
+            $filePath = $image->storeAs($folder, $fileName, 'public');
+
+            $dataImage = [
+                'product_id' => $product->id,
+                'path' => $filePath,
+            ];
+
+            if (ProductImage::create($dataImage)) {
+                Session()->flash('success', 'Foto Produk berhasil ditambahkan.');
+            } else {
+                Session()->flash('error', 'Foto Produk gagal ditambahkan.');
+            }
+        }
+
+        return redirect()->route('products.images');
     }
 }

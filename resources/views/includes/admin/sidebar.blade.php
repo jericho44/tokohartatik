@@ -15,6 +15,12 @@
                     <li class="active"><a class="nav-link" href="index.html">Atribut</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-image"></i><span>Galeri</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('products.images') }}">Produk</a></li>
+                </ul>
+            </li>
             <li class="menu-header">Starter</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
