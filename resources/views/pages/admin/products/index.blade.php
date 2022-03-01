@@ -68,7 +68,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $products->links() }}
+                    {{ $products->links('pagination::bootstrap-4') }}
                 </div>
                 {{-- @can('add_products') --}}
                 <div class="card-footer text-right">

@@ -29,8 +29,9 @@ Route::group(
         Route::delete('products/{id}/delete-permatent', [ProductController::class, 'deletePermanent'])->name('products.deletePermanent');
         Route::get('products/images', 'ProductController@images')->name('products.images');
         Route::get('products/{id}/add-image', 'ProductController@addImage')->name('products.add_image');
-        Route::post('products/imagess/{id}', 'ProductController@uploadImage')->name('products.upload_image');
-        Route::delete('products/imagess/{imageID}', 'ProductController@removeImage')->name('products.remove_image');
+        Route::post('products/images/{id}', 'ProductController@uploadImage')->name('products.upload_image');
+        Route::get('products/images/{id}', 'ProductController@viewImage')->name('products.view_image');
+        Route::delete('products/images/{id}', 'ProductController@removeImage')->name('products.remove_image');
         Route::resource('products', 'ProductController');
 
         // Route::resource('attributes', 'AttributeController');

@@ -27,39 +27,30 @@
                                 <td>{{ $product->name }}</td>
                                 <td>
                                     @forelse ($product->productImages as $created)
-                                        {{ $created['created_at'] }}
+                                        @if ($loop->last)
+                                        {{ $created->created_at->format('d M Y, H:i:s') }}
+                                        @endif
                                     @empty
                                     <span class="text-center">Belum upload Foto</span>
                                     @endforelse
                                 </td>
+                                <td>
+                                    @if ($product->productImages->first())
+                                        <a href="{{ route('products.view_image', $product->id) }}" class="btn btn-info btn-sm my-1 text-center"><i class="fas fa-eye" style="cursor: "></i> Lihat</a>
+                                    @else
+                                        <span class="text-center">Belum ada Foto</span>
+                                    @endif
+                                </td>
                                 {{-- <td>{{ $product->statusLabel() }}</td> --}}
                                 <td>
-                                    @forelse ($product->productImages as $image)
-                                    <a href="{{ $product->id }}" class="btn btn-info btn-sm my-1 text-center"><i class="fas fa-eye" style="cursor: "></i> Lihat</a>     
-                                    @empty
-                                    <span class="text-center">Belum ada Foto</span>     
-                                    @endforelse
-                                </td>
-                                <td>
                                     <a href="{{ route('products.add_image', $product->id) }}" class="btn btn-primary btn-sm my-1"><i class="fas fa-plus" title="Tambah Foto"></i> Tambah</a>
-                                    <a href="{{ route('products.edit', $product->id ) }}"
-                                        class="btn btn-warning btn-sm my-1"><i class="fas fa-edit"></i> Edit</a>
-                                    {{-- <a href="{{ route('products.viewDetail', $product->id ) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i>Lihat</a> --}}
                                     {{-- @can('delete_products') --}}
-                                    <form action="{{ route('products.destroy', $product->id) }}" class="d-inline"
+                                    <form action="{{ route('products.remove_image', $product->id) }}" class="d-inline"
                                         method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger btn-sm my-1">
                                             <i class="fa fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                    <form action="{{ route('products.deletePermanent', $product->id) }}"
-                                        class="d-inline" method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
-                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                     {{-- @endcan --}}
@@ -72,7 +63,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $products->links() }}
+                    {{ $products->links('pagination::bootstrap-4') }}
                 </div>
                 {{-- @can('add_products') --}}
                 {{-- @endcan --}}
