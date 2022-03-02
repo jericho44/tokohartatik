@@ -6,7 +6,7 @@
 
 <div class="card col-lg-8 col-md-6">
     <div class="card-header">
-        <strong>Tambah Kategori</strong>
+        <h2>Tambah Kategori</h2>
     </div>
     <div class="card-body card-block">
         <form action="{{ route('categories.store') }}" method="post">

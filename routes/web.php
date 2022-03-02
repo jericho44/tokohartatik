@@ -34,13 +34,13 @@ Route::group(
         Route::delete('products/images/{id}', 'ProductController@removeImage')->name('products.remove_image');
         Route::resource('products', 'ProductController');
 
-        // Route::resource('attributes', 'AttributeController');
-        // Route::get('attributes/{attributeID}/options', 'AttributeController@options')->name('attributes.options');
-        // Route::get('attributes/{attributeID}/add-option', 'AttributeController@add_option')->name('attributes.add_option');
-        // Route::post('attributes/options/{attributeID}', 'AttributeController@store_option')->name('attributes.store_option');
-        // Route::delete('attributes/options/{optionID}', 'AttributeController@remove_option')->name('attributes.remove_option');
-        // Route::get('attributes/options/{optionID}/edit', 'AttributeController@edit_option')->name('attributes.edit_option');
-        // Route::put('attributes/options/{optionID}', 'AttributeController@update_option')->name('attributes.update_option');
+        Route::get('attributes/{attributeID}/options', 'AttributeController@options')->name('attributes.options');
+        Route::get('attributes/{attributeID}/add-option', 'AttributeController@add_option')->name('attributes.add_option');
+        Route::post('attributes/options/{attributeID}', 'AttributeController@store_option')->name('attributes.store_option');
+        Route::delete('attributes/options/{optionID}', 'AttributeController@remove_option')->name('attributes.remove_option');
+        Route::get('attributes/options/{optionID}/edit', 'AttributeController@edit_option')->name('attributes.edit_option');
+        Route::put('attributes/options/{optionID}', 'AttributeController@update_option')->name('attributes.update_option');
+        Route::resource('attributes', 'AttributeController');
 
         // Route::resource('roles', 'RoleController');
         // Route::resource('users', 'UserController');

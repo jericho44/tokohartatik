@@ -6,13 +6,12 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Catalog</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="index-0.html">Dashboard</a></li>
-                    <li class="active"><a class="nav-link" href="index.html">Catalog</a></li>
-                    <li class="active"><a class="nav-link" href="index.html">Produk</a></li>
-                    <li class="active"><a class="nav-link" href="index.html">Kategori</a></li>
-                    <li class="active"><a class="nav-link" href="index.html">Atribut</a></li>
+                    <li class="active"><a class="nav-link" href="{{ route('products.index') }}">Produk</a></li>
+                    <li class="active"><a class="nav-link" href="{{ route('categories.index') }}">Kategori</a></li>
+                    <li class="active"><a class="nav-link" href="{{ route('attributes.index') }}">Atribut</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">

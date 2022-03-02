@@ -8,7 +8,7 @@
         <div class="col-lg-9">
             <div class="card card-default">
                 <div class="card-header card-header-border-botom">
-                    <strong>Tambah Produk</strong>
+                    <h2>Tambah Produk</h2>
                 </div>
                 <div class="card-body">
                     @include('includes.admin.flash')
