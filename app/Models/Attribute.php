@@ -17,8 +17,8 @@ class Attribute extends Model
         'type',
         'validation',
         'is_required',
-        'is_uniqe',
-        'is_fiterable',
+        'is_unique',
+        'is_filterable',
         'is_configurable',
     ];
 

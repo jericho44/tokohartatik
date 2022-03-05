@@ -12,11 +12,11 @@
                     </div>
                     <div class="card-body">
                         @include('includes.admin.flash')
-                        <table class="table table-bordered table-stripped">
+                        <table class="table table-bordered table-striped table-responsive-sm table-responsive-lg">
                             <thead>
                                 <th>No</th>
-                                <th>Kode</th>
                                 <th>Nama</th>
+                                <th>Kode</th>
                                 <th>Tipe</th>
                                 <th>Aksi</th>
                             </thead>
@@ -24,18 +24,26 @@
                                 @forelse ($attributes as $attribute)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $attribute->code }}</td>
                                     <td>{{ $attribute->name }}</td>
+                                    <td>{{ $attribute->code }}</td>
                                     <td>{{ $attribute->type }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $attribute->id) }}" class="btn btn-warning"><i
+                                        <a href="{{ route('attributes.edit', $attribute->id) }}" class="btn btn-warning"><i
                                                 class="fas fa-edit"></i> Edit</a>
-                                        <form action="{{ route('categories.destroy', $attribute->id) }}" class="d-inline"
+                                        <a href="{{ route('attributes.options', $attribute->id) }}" class="btn btn-success"><i class="fas fa-plus"></i> Pilihan</a>
+                                        <form action="{{ route('attributes.destroy', $attribute->id) }}" class="d-inline"
                                             method="post">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-danger">
                                                 <i class="fa fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('attributes.deletePermanent', $attribute->id) }}" class="d-inline" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>

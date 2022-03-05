@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -34,6 +35,7 @@ Route::group(
         Route::delete('products/images/{id}', 'ProductController@removeImage')->name('products.remove_image');
         Route::resource('products', 'ProductController');
 
+        Route::delete('attributes/{id}/delete-permatent', 'AttributeController@deletePermanent')->name('attributes.deletePermanent');
         Route::get('attributes/{attributeID}/options', 'AttributeController@options')->name('attributes.options');
         Route::get('attributes/{attributeID}/add-option', 'AttributeController@add_option')->name('attributes.add_option');
         Route::post('attributes/options/{attributeID}', 'AttributeController@store_option')->name('attributes.store_option');

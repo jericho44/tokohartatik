@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     @include('includes.admin.flash')
-                    <table class="table table-bordered table-stripped">
+                    <table class="table table-bordered table-striped table-responsive-sm table-responsive-lg">
                         <thead>
                             <th>No</th>
                             <th>ID</th>

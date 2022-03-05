@@ -36,8 +36,8 @@
                     '-- Pilih --']) !!}
                 </div>
                 <div class="form-group">
-                    <label for="is_uniqe" class="form-control-label">Unik Atribute</label>
-                    {!! Form::select('is_uniqe', $booleanOptions , null, ['class' => 'form-control', 'placeholder' =>
+                    <label for="is_unique" class="form-control-label">Unik Atribute</label>
+                    {!! Form::select('is_unique', $booleanOptions , null, ['class' => 'form-control', 'placeholder' =>
                     '-- Atribute Unik --']) !!}
                 </div>
                 <div class="form-group">

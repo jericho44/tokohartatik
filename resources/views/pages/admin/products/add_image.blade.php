@@ -23,15 +23,15 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-control-label">Nama</label>
-                                <input type="text" class="form-control" name="name" value="{{ $product->name }}" readonly>
+                                <input type="text" class="form-control" name="name" value="{{ $product->name }}" readonly disabled>
                             </div>
                             <div class="form-group">
                                 <label for="sku" class="form-control-label">SKU</label>
-                                <input type="text" class="form-control" name="sku" value="{{ $product->sku }}" readonly>
+                                <input type="text" class="form-control" name="sku" value="{{ $product->sku }}" readonly disabled>
                             </div>
                             <div class="form-group">
                                 <label for="price" class="form-control-label">Harga</label>
-                                <input type="text" class="form-control" name="price" value="{{ number_format($product->price) }}" readonly>
+                                <input type="text" class="form-control" name="price" value="{{ number_format($product->price) }}" readonly disabled>
                             </div>
                             <div class="form-group">
                                 <label for="image" class="form-control-label">Foto Produk</label>
