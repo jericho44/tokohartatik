@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductImageRequest;
 use App\Http\Requests\ProductRequest;
+use App\Models\Attribute;
+use App\Models\AttributeOption;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductAttributeValue;
 use App\Models\ProductImage;
+use App\Models\ProductInventory;
 use Illuminate\Http\Request;
 
 use Str;
@@ -45,8 +49,17 @@ class ProductController extends Controller
         $products = null;
         $categoryIDs = [];
         $statuses = Product::statuses();
+        $types = Product::types();
+        $configurableAttributes = $this->getConfigurableAttributes();
 
-        return view('pages.admin.products.create', compact('categories', 'products', 'categoryIDs', 'statuses'));
+        return view('pages.admin.products.create')->with([
+            'categories' => $categories,
+            'products' => $products,
+            'categoryIDs' => $categoryIDs,
+            'statuses' => $statuses,
+            'types' => $types,
+            'configurableAttributes' => $configurableAttributes,
+        ]);
     }
 
     /**
@@ -61,21 +74,26 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($data['name']);
         $data['user_id'] = Auth::user()->id;
 
-        $saved = false;
-        $saved = DB::transaction(function () use ($data) {
+
+        $product = DB::transaction(function () use ($data) {
+            $categoryIDs = !empty($data['category_ids']) ? $data['category_ids'] : [];
             $product = Product::create($data);
             $product->categories()->sync($data['category_ids']);
 
-            return true;
+            if ($data['type'] == 'configurable') {
+                $this->generateProductVariants($product, $data);
+            }
+
+            return $product;
         });
 
-        if ($saved) {
+        if ($product) {
             Session()->flash('success', 'Produk baru berhasil ditambahkan.');
         } else {
             Session()->flash('error', 'Produk gagal ditambahkan');
         }
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.edit', $product->id);
     }
 
     /**
@@ -105,8 +123,101 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get()->toArray();
         $categoryIDs = $product->categories->pluck('id')->toArray();
         $statuses = Product::statuses();
+        $types = Product::types();
+        $configurableAttributes = $this->getConfigurableAttributes();
 
-        return view('pages.admin.products.edit', compact('product', 'categories', 'categoryIDs', 'statuses'));
+        return view('pages.admin.products.edit')->with([
+            'categories' => $categories,
+            'product' => $product,
+            'categoryIDs' => $categoryIDs,
+            'statuses' => $statuses,
+            'types' => $types,
+            'configurableAttributes' => $configurableAttributes,
+        ]);
+    }
+
+    private function getConfigurableAttributes()
+    {
+        return Attribute::where('is_configurable', true)->get();
+    }
+
+    private function generateAttributeCombinations($arrays)
+    {
+        $result = [[]];
+        foreach ($arrays as $property => $property_values) {
+            $tmp = [];
+            foreach ($result as $result_item) {
+                foreach ($property_values as $property_value) {
+                    $tmp[] = array_merge($result_item, array($property => $property_value));
+                }
+            }
+            $result = $tmp;
+        }
+        return $result;
+    }
+
+    private function convertVariantName($variant)
+    {
+        $variantName = '';
+
+        foreach (array_keys($variant) as $key => $code) {
+            $attributeOptionID = $variant[$code];
+            $attributeOption = AttributeOption::find($attributeOptionID);
+
+            if ($attributeOption) {
+                $variantName .= '-' . $attributeOption->name;
+            }
+        }
+
+        return $variantName;
+    }
+
+    private function generateProductVariants($product, $data)
+    {
+        $configurableAttributes = $this->getConfigurableAttributes();
+
+        $vartiantAttributes = [];
+        foreach ($configurableAttributes as $attribute) {
+            $vartiantAttributes[$attribute->code] = $data[$attribute->code];
+        }
+
+        $variants = $this->generateAttributeCombinations($vartiantAttributes);
+
+        if ($variants) {
+            foreach ($variants as $variant) {
+                $variantData = [
+                    'parent_id' => $product->id,
+                    'user_id' => Auth::user()->id,
+                    'sku' => $product->sku . '-' . implode('-', array_values($variant)),
+                    'type' => 'simple',
+                    'name' => $product->name . $this->convertVariantName($variant),
+                ];
+
+                $variantData['slug'] = Str::slug($variantData['name']);
+
+                $newProductVariant = Product::create($variantData);
+
+                $categoryIDs = !empty($data['category_ids']) ? $data['category_ids'] : [];
+                $newProductVariant->categories()->sync($categoryIDs);
+
+                $this->saveProductAttributeValues($newProductVariant, $variant);
+            }
+        }
+    }
+
+    private function saveProductAttributeValues($product, $variant)
+    {
+        foreach (array_values($variant) as $attributeOptionID) {
+            $attributeOption = AttributeOption::find($attributeOptionID);
+
+            $attributeOption = [
+                'product_id' => $product->id,
+                'attribute_id' => $attributeOption->attribute_id,
+                'text_value' => $attributeOption->name,
+            ];
+
+            ProductAttributeValue::create($attributeOption);
+        }
     }
 
     /**
@@ -125,8 +236,19 @@ class ProductController extends Controller
 
         $saved = false;
         $saved = DB::transaction(function () use ($product, $data) {
+            $categoryIDs = !empty($data['category_ids']) ? $data['category_ids'] : [];
             $product->update($data);
-            $product->categories()->sync($data['category_ids']);
+            $product->categories()->sync($categoryIDs);
+
+            if ($product->type == 'configurable') {
+                $this->updateProductVariants($data);
+            } else {
+                ProductInventory::updateOrCreate([
+                    'product_id' => $product->id
+                ], [
+                    'qty' => $data['qty']
+                ]);
+            }
 
             return true;
         });
@@ -138,6 +260,25 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index');
+    }
+
+    private function updateProductVariants($data)
+    {
+        if ($data['variants']) {
+            foreach ($data['variants'] as $productData) {
+                $product = Product::find($productData['id']);
+                $product->update($productData);
+
+                $product->status = $data['status'];
+                $product->save();
+
+                ProductInventory::updateOrCreate([
+                    'product_id' => $product->id
+                ], [
+                    'qty' => $productData['qty']
+                ]);
+            }
+        }
     }
 
     /**
