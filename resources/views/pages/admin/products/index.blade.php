@@ -30,7 +30,16 @@
                                 <td>{{ number_format($product->price) }}</td>
                                 {{-- <td>{{ $product->statusLabel() }}</td> --}}
                                 <td>
-                                @if ( $product->status == 1)
+                                @if ($product->type == 'configurable')
+                                    <span class="badge badge-info">Configurable</span>
+                                    @if ($product->status == 1)
+                                        <span class="badge badge-success">Aktif</span>
+                                    @elseif ( $product->status == 2)
+                                    <span class="badge badge-warning">NonAktif</span>
+                                    @else
+                                    <span class="badge badge-dark">Draft</span>
+                                    @endif
+                                @elseif ( $product->status == 1)
                                     <span class="badge badge-success">Aktif</span>
                                 @elseif ( $product->status == 2)
                                     <span class="badge badge-warning">NonAktif</span>

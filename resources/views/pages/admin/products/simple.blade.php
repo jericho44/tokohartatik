@@ -3,21 +3,25 @@
         <div class="form-group">
             <label for="price" class="form-control-label">Harga</label>
             <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
-                    value="{{ old('price') }}" placeholder="Harga" required>
+                    value="{{ old('price')  ?  old('price')  :  $product->price }}" placeholder="Harga" required>
             </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label for="weight" class="form-control-label">Berat</label>
             <input type="text" class="form-control @error('weight') is-invalid @enderror" name="weight"
-                    value="{{ old('weight') }}" placeholder="Berat" required>
+                    value="{{ old('weight')  ?  old('weight')  : $product->weight }}" placeholder="Berat" required>
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label for="qty" class="form-control-label">Jumlah</label>
-            <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}"
-                placeholder="jumlah">
+            @if (!empty($product->productInventory))
+                <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') ? old('qty') : $product->productInventory->qty}}"
+                    placeholder="jumlah">
+            @else
+                <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') ? old('qty') : $product->qty}}" placeholder="jumlah">
+            @endif
         </div>
     </div>
     <div class="col-md-4">

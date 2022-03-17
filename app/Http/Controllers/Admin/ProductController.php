@@ -78,7 +78,7 @@ class ProductController extends Controller
         $product = DB::transaction(function () use ($data) {
             $categoryIDs = !empty($data['category_ids']) ? $data['category_ids'] : [];
             $product = Product::create($data);
-            $product->categories()->sync($data['category_ids']);
+            $product->categories()->sync($categoryIDs);
 
             if ($data['type'] == 'configurable') {
                 $this->generateProductVariants($product, $data);
@@ -120,6 +120,8 @@ class ProductController extends Controller
         }
 
         $product = Product::findOrFail($id);
+        $product['qty'] = isset($product->productInventory) ? $product->productInventory->qty : null;
+
         $categories = Category::orderBy('name', 'ASC')->get()->toArray();
         $categoryIDs = $product->categories->pluck('id')->toArray();
         $statuses = Product::statuses();
