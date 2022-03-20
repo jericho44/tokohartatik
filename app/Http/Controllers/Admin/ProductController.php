@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductImageRequest;
 use App\Http\Requests\ProductRequest;
@@ -21,6 +22,8 @@ use Auth;
 
 class ProductController extends Controller
 {
+    use Authorizable;
+
     public function __construct()
     {
         $statuses = Product::statuses();

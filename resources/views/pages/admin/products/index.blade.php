@@ -50,24 +50,24 @@
                                 <td>
                                     <a href="{{ route('products.edit', $product->id ) }}"
                                         class="btn btn-warning btn-sm my-1"><i class="fas fa-edit"></i> Edit</a>
-                                    {{-- @can('delete_products') --}}
-                                    <form action="{{ route('products.destroy', $product->id) }}" class="d-inline"
-                                        method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm my-1">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                    <form action="{{ route('products.deletePermanent', $product->id) }}" class="d-inline"
-                                        method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    {{-- @endcan --}}
+                                    @can('delete_products')
+                                        <form action="{{ route('products.destroy', $product->id) }}" class="d-inline"
+                                            method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm my-1">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('products.deletePermanent', $product->id) }}" class="d-inline"
+                                            method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                             @empty
@@ -79,12 +79,12 @@
                     </table>
                     {{ $products->links('pagination::bootstrap-4') }}
                 </div>
-                {{-- @can('add_products') --}}
-                <div class="card-footer text-right">
-                    <a href="{{ route('products.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
-                        Produk</a>
-                </div>
-                {{-- @endcan --}}
+                @can('add_products')
+                    <div class="card-footer text-right">
+                        <a href="{{ route('products.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
+                            Produk</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>
