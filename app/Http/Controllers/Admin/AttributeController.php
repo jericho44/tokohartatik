@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttributeOptionRequest;
 use App\Http\Requests\AttributeRequest;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class AttributeController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *

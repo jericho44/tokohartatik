@@ -1,21 +1,21 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            <label for="price" class="form-control-label">Harga</label>
+            <label for="price" class="form-control-label">Harga*</label>
             <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
-                    value="{{ old('price')  ?  old('price')  :  $product->price }}" placeholder="Harga" required>
+                    value="{{ old('price')  ?  old('price')  :  number_format($product->price) }}" placeholder="Harga" required>
             </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label for="weight" class="form-control-label">Berat</label>
+            <label for="weight" class="form-control-label">Berat(gram)*</label>
             <input type="text" class="form-control @error('weight') is-invalid @enderror" name="weight"
-                    value="{{ old('weight')  ?  old('weight')  : $product->weight }}" placeholder="Berat" required>
+                    value="{{ old('weight')  ?  old('weight')  : number_format($product->weight) }}" placeholder="Berat" required>
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label for="qty" class="form-control-label">Jumlah</label>
+            <label for="qty" class="form-control-label">Jumlah*</label>
             @if (!empty($product->productInventory))
                 <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') ? old('qty') : $product->productInventory->qty}}"
                     placeholder="jumlah">

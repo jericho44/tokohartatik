@@ -42,6 +42,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_attributes',
             'delete_attributes',
 
+            'view_images',
+            'add_images',
+            'edit_images',
+            'delete_images',
+
             'view_shipments',
             'add_shipments',
             'edit_shipments',

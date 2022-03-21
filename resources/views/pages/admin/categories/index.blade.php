@@ -30,6 +30,7 @@
                                 <td>
                                     <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning"><i
                                             class="fas fa-edit"></i> Edit</a>
+                                @can('delete_categories')                                    
                                     <form action="{{ route('categories.destroy', $category->id) }}" class="d-inline"
                                         method="post">
                                         @method('DELETE')
@@ -38,6 +39,7 @@
                                             <i class="fa fa-trash"></i> Delete
                                         </button>
                                     </form>
+                                @endcan
                                 </td>
                             </tr>
                             @empty
@@ -51,10 +53,12 @@
                     </table>
                     {{ $categories->links('pagination::bootstrap-4') }}
                 </div>
-                <div class="card-footer text-right">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
-                        Kategori</a>
-                </div>
+                @can('add_categories')
+                    <div class="card-footer text-right">
+                        <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
+                            Kategori</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

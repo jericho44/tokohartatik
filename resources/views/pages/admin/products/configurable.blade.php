@@ -11,27 +11,27 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            {!! Form::label('name', 'Name') !!}
+            {!! Form::label('name', 'Nama') !!}
             {!! Form::text('variants['. $variant->id .'][name]', $variant->name, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            {!! Form::label('price', 'Price') !!}
+            {!! Form::label('price', 'Harga*') !!}
             {!! Form::text('variants['. $variant->id .'][price]', $variant->price, ['class' => 'form-control',
             'required' => true]) !!}
         </div>
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            {!! Form::label('qty', 'Stock') !!}
+            {!! Form::label('qty', 'Stock*') !!}
             {!! Form::text('variants['. $variant->id .'][qty]', ($variant->productInventory) ?
             $variant->productInventory->qty : null, ['class' => 'form-control', 'required' => true]) !!}
         </div>
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            {!! Form::label('weight', 'Weight') !!}
+            {!! Form::label('weight', 'Berat(gram)*') !!}
             {!! Form::text('variants['. $variant->id .'][weight]', $variant->weight, ['class' => 'form-control',
             'required' => true]) !!}
         </div>

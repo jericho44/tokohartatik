@@ -29,23 +29,25 @@
                                     <td>{{ $attribute->type }}</td>
                                     <td>
                                         <a href="{{ route('attributes.edit', $attribute->id) }}" class="btn btn-warning"><i
-                                                class="fas fa-edit"></i> Edit</a>
+                                            class="fas fa-edit"></i> Edit</a>
                                         <a href="{{ route('attributes.options', $attribute->id) }}" class="btn btn-success"><i class="fas fa-plus"></i> Pilihan</a>
-                                        <form action="{{ route('attributes.destroy', $attribute->id) }}" class="d-inline"
-                                            method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i> Delete
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('attributes.deletePermanent', $attribute->id) }}" class="d-inline" method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        @can('delete_attributes')                                            
+                                            <form action="{{ route('attributes.destroy', $attribute->id) }}" class="d-inline"
+                                                method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('attributes.deletePermanent', $attribute->id) }}" class="d-inline" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @empty
@@ -59,10 +61,14 @@
                         </table>
                         {{ $attributes->links('pagination::bootstrap-4') }}
                     </div>
-                    <div class="card-footer text-right">
-                        <a href="{{ route('attributes.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
-                            Atribut</a>
-                    </div>
+                     @if (Auth::user()->roles[0]['name'] != "Operator")
+                        @can('add_attributes')
+                            <div class="card-footer text-right">
+                                <a href="{{ route('attributes.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
+                                    Atribut</a>
+                            </div>
+                        @endcan                      
+                     @endif 
                 </div>
             </div>
         </div>

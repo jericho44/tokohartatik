@@ -27,7 +27,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $product->sku }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ number_format($product->price) }}</td>
+                                <td>Rp. {{ number_format($product->price) }}</td>
                                 {{-- <td>{{ $product->statusLabel() }}</td> --}}
                                 <td>
                                 @if ($product->type == 'configurable')

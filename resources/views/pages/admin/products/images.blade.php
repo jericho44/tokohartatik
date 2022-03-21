@@ -44,7 +44,7 @@
                                 {{-- <td>{{ $product->statusLabel() }}</td> --}}
                                 <td>
                                     <a href="{{ route('products.add_image', $product->id) }}" class="btn btn-primary btn-sm my-1"><i class="fas fa-plus" title="Tambah Foto"></i> Tambah</a>
-                                    {{-- @can('delete_products') --}}
+                                    @can('delete_images')
                                     <form action="{{ route('products.remove_image', $product->id) }}" class="d-inline"
                                         method="post">
                                         @method('DELETE')
@@ -53,7 +53,7 @@
                                             <i class="fa fa-trash"></i> Delete
                                         </button>
                                     </form>
-                                    {{-- @endcan --}}
+                                    @endcan
                                 </td>
                             </tr>
                             @empty
@@ -65,8 +65,7 @@
                     </table>
                     {{ $products->links('pagination::bootstrap-4') }}
                 </div>
-                {{-- @can('add_products') --}}
-                {{-- @endcan --}}
+
             </div>
         </div>
     </div>

@@ -16,7 +16,9 @@
                                 <th>No</th>
                                 <th>Tanggal Upload</th>
                                 <th>Foto</th>
-                                <th>Action</th>
+                                @can('delete_images')
+                                    <th>Action</th>
+                                @endcan
                             </thead>
                             <tbody>
                                 @forelse ($productImage as $item)
@@ -26,15 +28,17 @@
                                        <td>
                                            <img src="{{ asset('storage/'. $item->path) }}" alt="{{ $item->name }}" class="img-thumbnail" style="width: 150px">
                                        </td>
-                                       <td>
-                                        <form action="{{ route('products.remove_image', $item->id) }}" class="d-inline" method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm my-1">
-                                                <i class="fa fa-trash"></i> Delete
-                                            </button>
-                                        </form>
-                                       </td>
+                                       @can('delete_images')
+                                        <td>
+                                            <form action="{{ route('products.remove_image', $item->id) }}" class="d-inline" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm my-1">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                        @endcan
                                    </tr> 
                                 @empty
                                     <tr>

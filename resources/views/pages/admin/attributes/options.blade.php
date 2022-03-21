@@ -31,14 +31,16 @@
                                         <td>{{ $option->name }}</td>
                                         <td>
                                             <a href="{{ route('attributes.edit_option', $option->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                            <form action="{{ route('attributes.remove_option', $option->id) }}" class="d-inline"
-                                            method="post">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>
-                                            </form>
+                                            @can('delete_attributes')
+                                                <form action="{{ route('attributes.remove_option', $option->id) }}" class="d-inline"
+                                                method="post">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty
