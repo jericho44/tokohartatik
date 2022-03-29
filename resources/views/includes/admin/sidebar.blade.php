@@ -20,6 +20,19 @@
                     <li><a class="nav-link" href="{{ route('products.images') }}">Produk</a></li>
                 </ul>
             </li>
+            @can('add_roles')                
+            <hr>
+            <li class="menu-header">Permission</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-user-lock"></i><span>Users & Roles</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('users.index') }}">Users</a></li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('roles.index') }}">Roles</a></li>
+                </ul>
+            </li>
+            @endcan
             <li class="menu-header">Starter</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>

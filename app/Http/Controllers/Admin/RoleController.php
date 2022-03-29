@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
 
+use App\Authorizable;
+use App\Models\Permission;
+use Session;
+
 class RoleController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('pages.admin.roles.index', compact(['roles', 'permissions']));
     }
 
     /**
@@ -35,7 +45,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['name' => 'required|unique:roles,name']);
+
+        if (Role::create($request->only('name'))) {
+            Session::flash('success', 'Role baru berhasil ditambahkan.');
+        }
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -69,7 +85,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        session()->flash('success', $role->name . ' permission berhasil diubah.');
+        if ($role == 'Admin') {
+            $role->syncPermissions(Permission::all());
+
+            return redirect()->back();
+        }
+
+        $permissions = $request->get('permissions', []);
+        $role->syncPermissions($permissions);
+
+        return redirect()->back();
     }
 
     /**

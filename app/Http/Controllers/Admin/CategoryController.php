@@ -77,7 +77,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::orderBy('name', 'ASC')->get()->toArray();
+        $categories = Category::where('id', '!=', $id)->orderBy('name', 'ASC')->get()->toArray();
 
         return view('pages.admin.categories.edit', compact('category', 'categories'));
     }

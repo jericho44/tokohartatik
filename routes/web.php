@@ -44,8 +44,8 @@ Route::group(
         Route::put('attributes/options/{optionID}', 'AttributeController@update_option')->name('attributes.update_option');
         Route::resource('attributes', 'AttributeController');
 
-        // Route::resource('roles', 'RoleController');
-        // Route::resource('users', 'UserController');
+        Route::resource('roles', 'RoleController');
+        Route::resource('users', 'UserController');
 
         // Route::get('orders/trashed', 'OrderController@trashed');
         // Route::get('orders/restore/{orderID}', 'OrderController@restore');
