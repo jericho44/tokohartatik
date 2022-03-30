@@ -38,7 +38,7 @@
                             <select name="roles" class="form-control @error('role') is-invalid @enderror" required>
                                 <option value="">-- Pilih Role --</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ $user->roles->pluck('id') == $role->id ? 'selected' : '' }}>{{ $role->name }}<option>
+                                    <option value="{{ $role->id }}" {{ $user->roles->first()->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('role')<div class="text-muted">{{ $message }}</div>@enderror

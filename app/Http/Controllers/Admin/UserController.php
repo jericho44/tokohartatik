@@ -129,7 +129,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'bail|required|min:2',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'roles' => 'required|min:1'
+        ]);
+
+        // Get the user
+        $user = User::findOrFail($id);
+
+        DB::transaction(function () use ($request, $user) {
+            // Update user
+            $user->fill($request->except('roles', 'permissions', 'password'));
+
+            // check for password change
+            if ($request->get('password')) {
+                $user->password = bcrypt($request->get('password'));
+            }
+
+            $this->syncPermissions($request, $user);
+
+            $user->save();
+
+            Session::flash('success', 'Penguna berhasil diperbarui.');
+        });
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -140,6 +165,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user->hasRole('Admin')) {
+            Session::flash('error', 'Penguna admin tidak dapat dihapus.');
+            return redirect('admin/users');
+        }
+
+        if ($user->delete()) {
+            Session::flash('success', 'Penguna berhasil dihapus.');
+        }
+        return redirect('admin/users');
     }
 }
