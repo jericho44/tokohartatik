@@ -169,12 +169,12 @@ class UserController extends Controller
 
         if ($user->hasRole('Admin')) {
             Session::flash('error', 'Penguna admin tidak dapat dihapus.');
-            return redirect('admin/users');
+            return redirect()->route('users.index');
         }
 
         if ($user->delete()) {
             Session::flash('success', 'Penguna berhasil dihapus.');
         }
-        return redirect('admin/users');
+        return redirect()->route('users.index');
     }
 }

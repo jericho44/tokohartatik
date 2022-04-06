@@ -26,7 +26,6 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $statuses = Product::statuses();
     }
 
     /**
