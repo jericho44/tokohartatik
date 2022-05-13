@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/product/{slug}', 'ShopController@show')->name('product.details');
 
 Route::group(
     ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']],
