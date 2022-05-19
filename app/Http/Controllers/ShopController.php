@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\ProductAttributeValue;
 use Illuminate\Http\Request;
 
+use Str;
+
 class ShopController extends Controller
 {
     /**
@@ -13,13 +15,22 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::active()->paginate(15);
+        $products = Product::active();
+
+        if ($search = $request->get('search')) {
+            $search = str_replace('-', ' ', Str::slug($search));
+
+            $products = $products->whereRaw('MATCH(name, slug, short_description, description) AGAINST (? IN NATURAL LANGUAGE MODE)', [$search]);
+        }
+
+        $products = $products->paginate(15);
 
         return view('pages.tshop.shop.index')->with(
             [
-                'products' => $products
+                'products' => $products,
+                'search' => null !== $search ? $search : null,
             ]
         );
     }

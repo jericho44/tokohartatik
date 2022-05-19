@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="search__inner">
-                    <form action="#" method="get">
-                        <input placeholder="Search here... " type="text">
+                    <form action="{{ route('shop') }}" method="get">
+                        <input placeholder="Search here... " type="text" name="search" value="{{ $search }}">
                         <button type="submit"></button>
                     </form>
                     <div class="search__close__btn">
