@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->data['search'] = null;
+    }
     /**
      * Create a new controller instance.
      *
@@ -23,6 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.tshop.home');
+        return view('pages.tshop.home', $this->data);
     }
 }

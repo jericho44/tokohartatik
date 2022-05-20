@@ -7,17 +7,19 @@
             <div class="filter__content">
                 <!-- Start Single Content -->
                 <div class="fiter__content__inner">
+                    @if ($categories)
                     <div class="single__filter">
                         <h2>Sort By</h2>
-                        <ul class="filter__list">
-                            <li><a href="#default">Default</a></li>
-                            <li><a href="#accessories">Accessories</a></li>
-                            <li><a href="#bags">Bags</a></li>
-                            <li><a href="#chair">Chair</a></li>
-                            <li><a href="#decoration">Decoration</a></li>
-                            <li><a href="#fashion">Fashion</a></li>
-                        </ul>
+                        <h3 class="sidebar-tittle">Kategori</h3>
+                        <div class="sidebar-categories">
+                            <ul class="filter__list">
+                                @foreach ($categories as $category)
+                                <li><a href="{{ url('shop?category='. $category->slug) }}">{{ $category->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
+                    @endif
                     <div class="single__filter">
                         <h2>Size</h2>
                         <ul class="filter__list">

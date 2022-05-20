@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAttributeValue;
 use Illuminate\Http\Request;
@@ -10,6 +11,16 @@ use Str;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->data['search'] = null;
+        $this->data['categories'] = Category::parentCategories()
+            ->orderBy('name', 'ASC')
+            ->get();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,9 +36,20 @@ class ShopController extends Controller
             $products = $products->whereRaw('MATCH(name, slug, short_description, description) AGAINST (? IN NATURAL LANGUAGE MODE)', [$search]);
         }
 
+        if ($categorySlug = $request->get('category')) {
+            $category = Category::where('slug', $categorySlug)->firstOrFail();
+
+            $childIds = Category::childIds($category->id);
+            $categoryIds = array_merge([$category->id], $childIds);
+
+            $products = $products->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
+            });
+        }
+
         $products = $products->paginate(15);
 
-        return view('pages.tshop.shop.index')->with(
+        return view('pages.tshop.shop.index', $this->data)->with(
             [
                 'products' => $products,
                 'search' => null !== $search ? $search : null,
@@ -51,7 +73,7 @@ class ShopController extends Controller
             $product['qty'] = Product::getQtyOptions($product);
         }
 
-        return view('pages.tshop.shop.product_details')->with([
+        return view('pages.tshop.shop.product_details', $this->data)->with([
             'product' => $product,
         ]);
     }
