@@ -562,18 +562,24 @@ $('.image-popup').magnificPopup({
 /*-------------------------------
   19. Price Slider Active
 --------------------------------*/
-  $("#slider-range").slider({
-      range: true,
-      min: 10,
-      max: 500,
-      values: [110, 400],
-      slide: function(event, ui) {
-          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-      }
-  });
-  $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-      " - $" + $("#slider-range").slider("values", 1));
+    var sliderrange = $('#slider-range');
+    var amountprice = $('#amount');
+    var minPrice = parseFloat($('#productMinPrice').val());
+    var maxPrice  = parseFloat($('#productMaxPrice').val());
 
+    $(function() {
+        sliderrange.slider({
+            range: true,
+            min: minPrice,
+            max: maxPrice,
+            values: [minPrice, maxPrice],
+            slide: function(event, ui) {
+                amountprice.val(ui.values[0] + "-" + ui.values[1]);
+            }
+        });
+        amountprice.val(sliderrange.slider("values", 0) +
+            "-" + sliderrange.slider("values", 1));
+    });
 
 /*-------------------------------
   20.  Plus Minus Button 

@@ -9,8 +9,7 @@
                 <div class="fiter__content__inner">
                     @if ($categories)
                     <div class="single__filter">
-                        <h2>Sort By</h2>
-                        <h3 class="sidebar-tittle">Kategori</h3>
+                        <h2 class="sidebar-tittle">Kategori</h2>
                         <div class="sidebar-categories">
                             <ul class="filter__list">
                                 @foreach ($categories as $category)
@@ -43,15 +42,23 @@
                         </ul>
                     </div>
                     <div class="single__filter">
-                        <h2>Price</h2>
-                        <ul class="filter__list">
-                            <li><a href="#">$0.00 - $50.00</a></li>
-                            <li><a href="#">$50.00 - $100.00</a></li>
-                            <li><a href="#">$100.00 - $150.00</a></li>
-                            <li><a href="#">$150.00 - $200.00</a></li>
-                            <li><a href="#">$300.00 - $500.00</a></li>
-                            <li><a href="#">$500.00 - $700.00</a></li>
-                        </ul>
+                        <form method="GET" action="{{ url('shop')}}">
+                            <div class="sidebar-widget mb-40">
+                                <h2 class="sidebar-title">Filter Harga</h2>
+                                <div class="price_filter">
+                                    <div id="slider-range"></div>
+                                    <div class="price_slider_amount">
+                                        <div class="label-input">
+                                            <label>Harga : </label>
+                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" style="width:170px" />
+                                            <input type="hidden" id="productMinPrice" value="{{ $minPrice }}" />
+                                            <input type="hidden" id="productMaxPrice" value="{{ $maxPrice }}" />
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="single__filter">
                         <h2>Color</h2>

@@ -19,6 +19,9 @@ class ShopController extends Controller
         $this->data['categories'] = Category::parentCategories()
             ->orderBy('name', 'ASC')
             ->get();
+
+        $this->data['minPrice'] = Product::min('price');
+        $this->data['maxPrice'] = Product::max('price');
     }
 
     /**
@@ -45,6 +48,28 @@ class ShopController extends Controller
             $products = $products->whereHas('categories', function ($query) use ($categoryIds) {
                 $query->whereIn('categories.id', $categoryIds);
             });
+        }
+
+        $lowPrice = null;
+        $highPrice = null;
+
+        if ($priceSlider = $request->get('price')) {
+            $prices = explode('-', $priceSlider);
+
+            $lowPrice = !empty($prices[0]) ? (float)$prices[0] : $this->data['minPrice'];
+            $highPrice = !empty($prices[1]) ? (float)$prices[1] : $this->data['maxPrice'];
+
+            if ($lowPrice && $highPrice) {
+                $products = $products->where('price', '>=', $lowPrice)
+                    ->where('price', '<=', $highPrice)
+                    ->orWhereHas('variants', function ($query) use ($lowPrice, $highPrice) {
+                        $query->where('price', '>=', $lowPrice)
+                            ->where('price', '<=', $highPrice);
+                    });
+
+                $this->data['lowPrice'] = $lowPrice;
+                $this->data['highPrice'] = $highPrice;
+            }
         }
 
         $products = $products->paginate(15);
