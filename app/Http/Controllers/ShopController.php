@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttributeOption;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAttributeValue;
@@ -22,6 +23,16 @@ class ShopController extends Controller
 
         $this->data['minPrice'] = Product::min('price');
         $this->data['maxPrice'] = Product::max('price');
+
+        $this->data['colors'] = AttributeOption::whereHas('attribute', function ($query) {
+            $query->where('code', 'color')
+                ->where('is_filterable', 1);
+        })->orderBy('name', 'ASC')->get();
+
+        $this->data['sizes'] = AttributeOption::whereHas('attribute', function ($query) {
+            $query->where('code', 'size')
+                ->where('is_filterable', 1);
+        })->orderBy('name', 'ASC')->get();
     }
 
     /**
@@ -70,6 +81,15 @@ class ShopController extends Controller
                 $this->data['lowPrice'] = $lowPrice;
                 $this->data['highPrice'] = $highPrice;
             }
+        }
+
+        if ($attributeOptionID = $request->get('option')) {
+            $attributeOption = AttributeOption::findOrFail($attributeOptionID);
+
+            $products = $products->whereHas('ProductAttributeValues', function ($query) use ($attributeOption) {
+                $query->where('attribute_id', $attributeOption->attribute_id)
+                    ->where('text_value', $attributeOption->name);
+            });
         }
 
         $products = $products->paginate(15);

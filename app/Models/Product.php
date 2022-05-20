@@ -55,7 +55,7 @@ class Product extends Model
 
     public function productAttributeValues()
     {
-        return $this->hasMany(ProductAttributeValue::class);
+        return $this->hasMany(ProductAttributeValue::class, 'parent_product_id');
     }
 
     public function productImages()
