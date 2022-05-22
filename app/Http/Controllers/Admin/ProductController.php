@@ -215,6 +215,7 @@ class ProductController extends Controller
             $attributeOption = AttributeOption::find($attributeOptionID);
 
             $attributeOption = [
+                'parent_product_id' => $product->parent_id,
                 'product_id' => $product->id,
                 'attribute_id' => $attributeOption->attribute_id,
                 'text_value' => $attributeOption->name,
