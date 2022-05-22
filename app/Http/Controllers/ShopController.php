@@ -33,6 +33,16 @@ class ShopController extends Controller
             $query->where('code', 'size')
                 ->where('is_filterable', 1);
         })->orderBy('name', 'ASC')->get();
+
+        $this->data['sorts'] = [
+            url('shop') => 'Default',
+            url('shop?sort=price-asc') => 'Harga - Low to High',
+            url('shop?sort=price-desc') => 'Harga - High to Low',
+            url('shop?sort=created_at-desc') => 'Terbaru',
+            url('shop?sort=created_at-asc') => 'Terlama',
+        ];
+
+        $this->data['selectedSort'] = url('shop');
     }
 
     /**
@@ -90,6 +100,21 @@ class ShopController extends Controller
                 $query->where('attribute_id', $attributeOption->attribute_id)
                     ->where('text_value', $attributeOption->name);
             });
+        }
+
+        if ($sort = preg_replace('/\s+/', '', $request->get('sort'))) {
+            $availableSorts = ['price', 'created_at'];
+            $availableOrder = ['asc', 'desc'];
+            $sortAndOrder = explode('-', $sort);
+
+            $sortBy = strtolower($sortAndOrder[0]);
+            $orderBy = strtolower($sortAndOrder[1]);
+
+            if (in_array($sortBy, $availableSorts) && in_array($orderBy, $availableOrder)) {
+                $products = $products->orderBy($sortBy, $orderBy);
+            }
+
+            $this->data['selectedSort'] = url('shop?sort=' . $sort);
         }
 
         $products = $products->paginate(15);

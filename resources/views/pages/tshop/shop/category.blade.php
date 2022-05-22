@@ -8,6 +8,11 @@
                 <button data-filter=".cat--3">Decoration</button>
                 <button data-filter=".cat--4">Accessories</button>
             </div>
+            <div style="display: flex; align-content: flex-start">
+                <label style="width: 100px; font-weight: normal">Sort By : </label>
+                {{ Form::select('sort', $sorts , $selectedSort ,array('onChange' => 'this.options[this.selectedIndex].value &&
+                                (window.location = this.options[this.selectedIndex].value);')) }}
+            </div>
             <div class="filter__box">
                 <a class="filter__menu" href="#">filter</a>
             </div>

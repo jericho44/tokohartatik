@@ -83,8 +83,7 @@ class Product extends Model
     public function scopeActive($query)
     {
         return $query->where('status', 1)
-            ->where('parent_id', null)
-            ->orderBy('created_at', 'desc');
+            ->where('parent_id', null);
     }
 
     public function priceLabel()
