@@ -54,6 +54,23 @@ class ShopController extends Controller
     {
         $products = Product::active();
 
+        $products = $this->_searchProducts($products, $request);
+        $products = $this->_filterProductsByRange($products, $request);
+        $products = $this->_filterProductsByCategory($products, $request);
+        $products = $this->_sortProducts($products, $request);
+
+        $products = $products->paginate(15);
+
+        return view('pages.tshop.shop.index', $this->data)->with(
+            [
+                'products' => $products,
+                // 'search' => null !== $search ? $search : null,
+            ]
+        );
+    }
+
+    private function _searchProducts($products, $request)
+    {
         if ($search = $request->get('search')) {
             $search = str_replace('-', ' ', Str::slug($search));
 
@@ -71,6 +88,11 @@ class ShopController extends Controller
             });
         }
 
+        return $products;
+    }
+
+    private function _filterProductsByRange($products, $request)
+    {
         $lowPrice = null;
         $highPrice = null;
 
@@ -93,6 +115,11 @@ class ShopController extends Controller
             }
         }
 
+        return $products;
+    }
+
+    private function _filterProductsByCategory($products, $request)
+    {
         if ($attributeOptionID = $request->get('option')) {
             $attributeOption = AttributeOption::findOrFail($attributeOptionID);
 
@@ -102,6 +129,11 @@ class ShopController extends Controller
             });
         }
 
+        return $products;
+    }
+
+    private function _sortProducts($products, $request)
+    {
         if ($sort = preg_replace('/\s+/', '', $request->get('sort'))) {
             $availableSorts = ['price', 'created_at'];
             $availableOrder = ['asc', 'desc'];
@@ -117,14 +149,7 @@ class ShopController extends Controller
             $this->data['selectedSort'] = url('shop?sort=' . $sort);
         }
 
-        $products = $products->paginate(15);
-
-        return view('pages.tshop.shop.index', $this->data)->with(
-            [
-                'products' => $products,
-                'search' => null !== $search ? $search : null,
-            ]
-        );
+        return $products;
     }
 
     /**
