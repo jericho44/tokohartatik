@@ -40,7 +40,7 @@
             <li class="total__price">$130.00</li>
         </ul>
         <ul class="shopping__btn">
-            <li><a href="cart.html">View Cart</a></li>
+            <li><a href="{{ route('carts') }}">View Cart</a></li>
             <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
         </ul>
     </div>

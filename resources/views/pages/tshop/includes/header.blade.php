@@ -70,7 +70,8 @@
                                 <li><a href="{{ route('shop') }}">shop</a></li>
                                 <li><a href="shop-sidebar.html">shop sidebar</a></li>
                                 <li><a href="product-details.html">product details</a></li>
-                                <li><a href="cart.html">cart</a></li>
+                                <li>
+                                    <a href="cart.html">cart</a></li>
                                 <li><a href="wishlist.html">wishlist</a></li>
                                 <li><a href="checkout.html">checkout</a></li>
                                 <li><a href="team.html">team</a></li>
@@ -117,11 +118,14 @@
                 </div>
                 <!-- End MAinmenu Ares -->
                 <div class="col-md-2 col-sm-4 col-xs-3">
-                    <ul class="menu-extra">
-                        <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                        <li><a href="login-register.html"><span class="ti-user"></span></a></li>
-                        <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
-                        <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
+                    <ul class="menu-extra icon-cart-furniture">
+                        <li class="search search__open hidden-xs"><i class="ti-search"></i></li>
+                        <li><a href="login-register.html"><i class="ti-user"></i></a></li>
+                        <li class="cart__menu">
+                            <i class="ti-shopping-cart"></i>
+                            <span class="shop-count">02</span>
+                        </li>
+                        <li class="toggle__menu hidden-xs hidden-sm"><i class="ti-menu"></i></li>
                     </ul>
                 </div>
             </div>

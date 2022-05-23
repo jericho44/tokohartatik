@@ -2631,14 +2631,15 @@ select.select-color {
     border: 1px solid #ff4136;
     color: #fff;
 }
-.pro__dtl__btn li.buy__now__btn a {
+.pro__dtl__btn li.buy__now__btn button {
+    height: 45px;
     color: #4b4b4b;
     font-size: 14px;
     text-transform: uppercase;
     width: 175px;
     transition: 0.3s;
 }
-.pro__dtl__btn li.buy__now__btn a:hover {
+.pro__dtl__btn li.buy__now__btn button:hover {
     color: #fff;
     background: #ff4136;
     border: 1px solid #ff4136;
@@ -4299,7 +4300,27 @@ a.shipping-calculator-button:hover {
     color: #f8cd35;
 }
 
-
+.shop-count {
+    background-color: #050035;
+    border-radius: 50px;
+    color: #fff;
+    display: inline-block;
+    height: 24px;
+    line-height: 25px;
+    position: absolute;
+    text-align: center;
+    width: 22px;
+}
+.icon-cart-furniture i {
+    color: #00245b;
+    font-size: 25px;
+    cursor: pointer;
+}
+a.icon-cart-furniture {
+    display: block;
+    padding: 32px 0 32px 10px;
+    position: relative;
+}
 
 
 

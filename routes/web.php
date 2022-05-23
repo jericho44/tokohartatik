@@ -21,6 +21,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/product/{slug}', 'ShopController@show')->name('product.details');
 
+Route::get('/carts', 'CartController@index')->name('carts');
+Route::get('/carts/remove/{cartID}', 'CartController@destroy')->name('carts.remove');
+Route::post('/carts', 'CartController@store')->name('carts.add');
+Route::post('/carts/update', 'CartController@update')->name('carts.update');
+
 Route::group(
     ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']],
     function () {

@@ -13,7 +13,7 @@
                             <div class="bradcaump__inner text-center">
                                 <h2 class="bradcaump-title">Product Details</h2>
                                 <nav class="bradcaump-inner">
-                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                     <span class="brd-separetor">/</span>
                                     <span class="breadcrumb-item active">Product Details</span>
                                 </nav>
@@ -90,7 +90,8 @@
                                 {{-- <li class="old__prize">$15.21</li> --}}
                                 <li>Rp. {{ number_format($product->priceLabel()) }}</li>
                             </ul>
-                            <form action="" method="post">
+                            {!! Form::open(['url' => 'carts']) !!}
+                             {{ Form::hidden('product_id', $product->id) }}
                                 @csrf
                                 @if ($product->type == 'configurable')
                                 <div class="pro__dtl__color">
@@ -100,7 +101,6 @@
                                             true]) !!}
                                         </div>
                                     </div>
-                                </form>
                                 <div class="pro__dtl__size">
                                     <h2 class="title__5">Pilih Ukuran</h2>
                                     <div class="select-option-part">
@@ -110,22 +110,21 @@
                                 </div>
                                 @endif
                             <div class="product-action-wrap">
-                                <div class="prodict-statas"><span>Quantity :</span></div>
+                                <div class="prodict-statas"><span>Jumlah :</span></div>
                                 <div class="product-quantity">
-                                    <form id='myform' method='POST' action='#'>
                                         <div class="product-quantity">
                                             <div class="cart-plus-minus">
                                                {!! Form::number('qty', 1, ['class' => 'cart-plus-minus-box', 'placeholder' => 'Jumlah', 'min' => 1, 'max' => $product->qty['qty'] ]) !!}
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                             <ul class="pro__dtl__btn">
-                                <li class="buy__now__btn"><a href="#">buy now</a></li>
+                                <li class="buy__now__btn"><button>Add Cart</button></li>
                                 <li><a href="#"><span class="ti-heart"></span></a></li>
                                 <li><a href="#"><span class="ti-email"></span></a></li>
                             </ul>
+                            {!! Form::close() !!}
                             <div class="pro__social__share">
                                 <h2>Share :</h2>
                                 <ul class="pro__soaial__link">
