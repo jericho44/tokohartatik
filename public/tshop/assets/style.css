@@ -4146,10 +4146,10 @@ a.shipping-calculator-button:hover {
     margin-top: 52px;
 }
 .float-left-style {
-    float: right;
+    float: left !important;
 }
 .float-right-style {
-    float: left;
+    float: right !important;
 }
 :focus {
     outline: -webkit-focus-ring-color auto 0px;

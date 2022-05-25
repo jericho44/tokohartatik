@@ -19,4 +19,13 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    public function showLinkRequestForm()
+    {
+        if (property_exists($this, 'linkRequestView')) {
+            return view($this->linkRequestView);
+        }
+
+        return view('pages.tshop.auth.password.email');
+    }
 }

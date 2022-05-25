@@ -7,7 +7,9 @@
         <div class="container">
             <div class="row">
                 <!-- Start Left Feature -->
-                <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style">
+                @include('pages.tshop.includes.slider')
+                <!-- End Left Feature -->
+                <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-right-style">
                     <!-- Start Slider Area -->
                     <div class="slider__container slider--one">
                         <div class="slider__activation__wrap owl-carousel owl-theme">
@@ -49,8 +51,6 @@
                     </div>
                     <!-- Start Slider Area -->
                 </div>
-                @include('pages.tshop.includes.slider')
-                <!-- End Left Feature -->
             </div>
         </div>
     </section>

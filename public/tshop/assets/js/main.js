@@ -63,25 +63,25 @@ $('.mobile-menu nav').meanmenu({
 /*-------------------------------------------
   03. Product  Masonry (width)
 --------------------------------------------- */ 
-$('.htc__product__container').imagesLoaded( function() {
+// $('.htc__product__container').imagesLoaded( function() {
   
-    // filter items on button click
-    $('.product__menu').on( 'click', 'button', function() {
-      var filterValue = $(this).attr('data-filter');
-      $grid.isotope({ filter: filterValue });
-    }); 
-    // init Isotope
-    var $grid = $('.product__list').isotope({
-      itemSelector: '.single__pro',
-      percentPosition: true,
-      transitionDuration: '0.7s',
-      masonry: {
-        // use outer width of grid-sizer for columnWidth
-        columnWidth: '.single__pro',
-      }
-    });
+//     // filter items on button click
+//     $('.product__menu').on( 'click', 'button', function() {
+//       var filterValue = $(this).attr('data-filter');
+//       $grid.isotope({ filter: filterValue });
+//     }); 
+//     // init Isotope
+//     var $grid = $('.product__list').isotope({
+//       itemSelector: '.single__pro',
+//       percentPosition: true,
+//       transitionDuration: '0.7s',
+//       masonry: {
+//         // use outer width of grid-sizer for columnWidth
+//         columnWidth: '.single__pro',
+//       }
+//     });
 
-});
+// });
 
 $('.product__menu button').on('click', function(event) {
     $(this).siblings('.is-checked').removeClass('is-checked');

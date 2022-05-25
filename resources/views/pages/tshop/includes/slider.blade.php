@@ -1,4 +1,4 @@
-<div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
+<div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-left-style">
     <div class="categories-menu mrg-xs">
         <div class="category-heading">
             <h3> Browse Categories</h3>

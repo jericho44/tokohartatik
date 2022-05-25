@@ -119,8 +119,22 @@
                 <!-- End MAinmenu Ares -->
                 <div class="col-md-2 col-sm-4 col-xs-3">
                     <ul class="menu-extra icon-cart-furniture">
+                        @guest
+							<li><a href="{{ url('login') }}">Login</a></li>
+							<li><a href="{{ url('register') }}">Register</a></li>
+						@else
+							<li><b><a href="{{ url('profile') }}">{{ Auth::user()->first_name }}</a></b></li>
+							<a href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+											document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						@endguest
                         <li class="search search__open hidden-xs"><i class="ti-search"></i></li>
-                        <li><a href="login-register.html"><i class="ti-user"></i></a></li>
                         <li class="cart__menu">
                             <i class="ti-shopping-cart"></i>
                             <span class="shop-count">02</span>

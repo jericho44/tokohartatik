@@ -371,6 +371,10 @@
 .menu-extra li span:hover {
     color: #ffffff;
 }
+
+.menu-extra li a {
+  font-size: 15px;
+}
 /*---------------------------
   Header Stayle 2
 -----------------------------*/

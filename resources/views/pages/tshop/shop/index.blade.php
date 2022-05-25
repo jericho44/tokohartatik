@@ -40,7 +40,7 @@
                         <div class="product__list another-product-style">
                             @forelse ($products as $product)
                             <!-- Start Single Product -->
-                            <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
+                            <div class="col-md-3 col-lg-3 cat--1 col-sm-4 col-xs-12 single__pro">
                                 <div class="product foo">
                                     <div class="product__inner">
                                         <div class="pro__thumb">
