@@ -137,7 +137,7 @@
                         <li class="search search__open hidden-xs"><i class="ti-search"></i></li>
                         <li class="cart__menu">
                             <i class="ti-shopping-cart"></i>
-                            <span class="shop-count">02</span>
+                            <span class="shop-count">{{ \Cart::getTotalQuantity() }}</span>
                         </li>
                         <li class="toggle__menu hidden-xs hidden-sm"><i class="ti-menu"></i></li>
                     </ul>
