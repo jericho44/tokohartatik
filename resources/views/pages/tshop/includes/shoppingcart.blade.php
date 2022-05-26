@@ -34,7 +34,7 @@
             </ul>
             <ul class="shopping__btn">
                 <li><a href="{{ route('carts') }}">View Cart</a></li>
-                {{-- <li class="shp__checkout"><a href="{{ route('orders.checkout') }}">Checkout</a></li> --}}
+                <li class="shp__checkout"><a href="{{ route('orders.checkout') }}">Checkout</a></li>
             </ul>
         @endif
     </div>

@@ -24,3 +24,6 @@
 
 <!-- Modernizr JS -->
 <script src="{{ asset('tshop/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+{{-- CSRF TOKEN --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">

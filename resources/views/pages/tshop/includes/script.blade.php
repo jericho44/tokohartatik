@@ -10,6 +10,7 @@
 <script src="{{ asset('tshop/assets/js/waypoints.min.js') }}"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
 <script src="{{ asset('tshop/assets/js/main.js') }}"></script>
+<script src="{{ asset('tshop/assets/js/shipping.js') }}"></script>
 <script>
     $(".delete").on("click", function(){
         return confirm("Apakah anda yakin ingin menghapus produk ini?");
