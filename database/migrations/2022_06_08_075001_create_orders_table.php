@@ -24,6 +24,8 @@ class CreateOrdersTable extends Migration
             $table->decimal('base_total_price', 16, 2)->default(0);
             $table->decimal('tax_amount', 16, 2)->default(0);
             $table->decimal('tax_percent', 16, 2)->default(0);
+            $table->decimal('discount_amount', 16, 2)->default(0);
+            $table->decimal('discount_percent', 16, 2)->default(0);
             $table->decimal('shipping_cost', 16, 2)->default(0);
             $table->decimal('grand_total', 16, 2)->default(0);
             $table->text('note')->nullable();
