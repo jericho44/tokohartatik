@@ -29,7 +29,7 @@ class CreateShipmentsTable extends Migration
             $table->string('email')->nullable();
             $table->string('city_id')->nullable();
             $table->string('province_id')->nullable();
-            $table->integer('post_code')->nullable();
+            $table->integer('postcode')->nullable();
             $table->unsignedBigInteger('shipped_by')->nullable();
             $table->dateTime('shipped_at')->nullable();
             $table->softDeletes();

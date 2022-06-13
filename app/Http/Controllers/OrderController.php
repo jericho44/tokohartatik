@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductInventory;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 
@@ -289,7 +290,11 @@ class OrderController extends Controller
                         'attributes' => json_encode($item->attributes),
                     ];
 
-                    OrderItem::create($orderItemParams);
+                    $orderItem = OrderItem::create($orderItemParams);
+
+                    if ($orderItem) {
+                        ProductInventory::reduceStock($orderItem->product_id, $orderItem->qty);
+                    }
                 }
             }
 
@@ -330,9 +335,18 @@ class OrderController extends Controller
             \Cart::clear();
 
             \Session::flash('success', 'Terima Kasih telah melakukan pembelian.');
-            return redirect('orders/received/', $order->id);
+            return redirect('orders/received/' . $order->id);
         }
 
         return redirect()->route('orders.checkout');
+    }
+
+    public function received($orderId)
+    {
+        $this->data['order'] = Order::where('id', $orderId)
+            ->where('user_id', \Auth::user()->id)
+            ->firstOrFail();
+
+        return view('pages.tshop.orders.received', $this->data);
     }
 }

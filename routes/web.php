@@ -30,7 +30,7 @@ Route::get('orders/checkout', 'OrderController@checkout')->name('orders.checkout
 Route::post('orders/checkout', 'OrderController@doCheckout')->name('orders.doCheckout');
 Route::post('orders/shipping-cost', 'OrderController@shippingCost')->name('orders.shippingCost');
 Route::post('orders/set-shipping', 'OrderController@setShipping')->name('orders.setShipping');
-Route::get('orders/complete', 'OrderController@complete')->name('orders.complete');
+Route::get('orders/received/{orderID}', 'OrderController@received')->name('orders.received');
 Route::get('orders/invoice', 'OrderController@invoice')->name('orders.invoice');
 Route::get('orders/cities', 'OrderController@cities')->name('orders.cities');
 
