@@ -333,6 +333,8 @@ class OrderController extends Controller
 
         if ($order) {
             \Cart::clear();
+            // $this->_sendEmailOrderReceived($order);
+
 
             \Session::flash('success', 'Terima Kasih telah melakukan pembelian.');
             return redirect('orders/received/' . $order->id);
@@ -340,6 +342,12 @@ class OrderController extends Controller
 
         return redirect()->route('orders.checkout');
     }
+
+    // private function _sendEmailOrderReceived($order)
+    // {
+    //     $message = new \App\Mail\OrderReceived($order);
+    //     \Mail::to(\Auth::user()->email)->send($message);
+    // }
 
     public function received($orderId)
     {
