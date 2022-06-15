@@ -217,6 +217,7 @@ class OrderController extends Controller
         $order = \DB::transaction(function () use ($params) {
             $order = $this->_saveOrder($params);
             $this->_saveOrderItems($order);
+            $this->_generatePaymentToken($order);
             $this->_saveShipment($order, $params);
 
             return $order;
@@ -232,6 +233,10 @@ class OrderController extends Controller
         }
 
         return redirect()->route('orders.checkout');
+    }
+
+    private function _generatePaymentToken($order)
+    {
     }
 
     private function _saveOrder($params)
