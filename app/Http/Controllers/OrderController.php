@@ -237,6 +237,36 @@ class OrderController extends Controller
 
     private function _generatePaymentToken($order)
     {
+        $this->initPaymentGateway();
+
+        $customerDetails = [
+            'first_name' => $order->customer_first_name,
+            'last_name' => $order->customer_last_name,
+            'email' => $order->customer_email,
+            'phone' => $order->customer_phone,
+        ];
+
+        $params = [
+            'enable_payment' => \App\Models\Payment::PAYMENT_CHANNELS,
+            'transaction_details' => [
+                'order_id' => $order->code,
+                'gross_amount' => $order->grand_total,
+            ],
+            'customer_details' => $customerDetails,
+            'expiry' => [
+                'start_time' => date('Y-m-d H:i:s T'),
+                'unit' => \App\Models\Payment::EXPIRY_UNIT,
+                'duration' => \App\Models\Payment::EXPIRY_DURATION,
+            ],
+        ];
+
+        $snap = \Midtrans\Snap::createTransaction($params);
+
+        if ($snap->token) {
+            $order->payment_token = $snap->token;
+            $order->payment_url = $snap->redirect_url;
+            $order->save();
+        }
     }
 
     private function _saveOrder($params)
