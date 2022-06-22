@@ -30,6 +30,25 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-header">Orders</li>
+            <li class="nav-item dropdown {{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-user-lock"></i><span>Orders</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('orders.index') }}">Penjualan</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('shipments.index') }}">Pengiriman</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('orders.trashed') }}">Dihapus</a>
+                    </li>
+                </ul>
+            </li>
             @can('add_roles')                
             <hr>
             <li class="menu-header">Permission</li>

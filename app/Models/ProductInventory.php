@@ -25,4 +25,11 @@ class ProductInventory extends Model
         $inventory->qty = $inventory->qty - $qty;
         $inventory->save();
     }
+
+    public static function increaseStock($productId, $qty)
+    {
+        $inventory = self::where('product_id', $productId)->firstOrFail();
+        $inventory->qty = $inventory->qty + $qty;
+        $inventory->save();
+    }
 }

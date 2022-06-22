@@ -66,14 +66,14 @@ Route::group(
         Route::resource('roles', 'RoleController');
         Route::resource('users', 'UserController');
 
-        // Route::get('orders/trashed', 'OrderController@trashed');
-        // Route::get('orders/restore/{orderID}', 'OrderController@restore');
-        // Route::resource('orders', 'OrderController');
-        // Route::get('orders/{orderID}/cancel', 'OrderController@cancel');
-        // Route::put('orders/cancel/{orderID}', 'OrderController@doCancel');
-        // Route::post('orders/complete/{orderID}', 'OrderController@doComplete');
+        Route::get('orders/trashed', 'OrderController@trashed')->name('orders.trashed');
+        Route::get('orders/restore/{orderID}', 'OrderController@restore')->name('orders.restore');
+        Route::get('orders/{orderID}/cancel', 'OrderController@cancel')->name('orders.cancel');
+        Route::put('orders/cancel/{orderID}', 'OrderController@doCancel')->name('orders.doCancel');
+        Route::post('orders/complete/{orderID}', 'OrderController@doComplete')->name('orders.doComplete');
+        Route::resource('orders', 'OrderController');
 
-        // Route::resource('shipments', 'ShipmentController');
+        Route::resource('shipments', 'ShipmentController');
 
         // Route::resource('slides', 'SlideController');
         // Route::get('slides/{slideID}/up', 'SlideController@moveUp');

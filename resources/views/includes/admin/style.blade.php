@@ -6,5 +6,8 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
 <!-- Template CSS -->
+<link href="{{ url('assets/plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" />
+<link id="bsdp-css" rel="stylesheet"
+    href="{{ url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
 <link rel="stylesheet" href="{{ url('assets/backend/css/style.css') }}">
 <link rel="stylesheet" href="{{ url('assets/backend/css/components.css') }}../">
