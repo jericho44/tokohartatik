@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="{{ asset('tshop/assets/css/responsive.css') }}">
 <!-- User style -->
 <link rel="stylesheet" href="{{ asset('tshop/assets/css/custom.css') }}">
+<link rel="stylesheet" href="{{ url('assets/plugins/easyzoom/css/easyzoom.css') }}">
 
 
 <!-- Modernizr JS -->

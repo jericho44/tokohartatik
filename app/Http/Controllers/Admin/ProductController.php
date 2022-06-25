@@ -336,25 +336,74 @@ class ProductController extends Controller
 
         if ($request->has('image')) {
             $image = $request->file('image');
-            $name = $product->slug . '-' . $product->sku . '-' . time();
+            $name = $product->slug . '_' . time();
             $fileName = $name . '.' . $image->getClientOriginalExtension();
 
-            $folder = '/uploads/images';
-            $filePath = $image->storeAs($folder, $fileName, 'public');
+            $folder = ProductImage::UPLOAD_DIR . '/images';
 
-            $dataImage = [
-                'product_id' => $product->id,
-                'path' => $filePath,
-            ];
+            $filePath = $image->storeAs($folder . '/original', $fileName, 'public');
 
-            if (ProductImage::create($dataImage)) {
-                Session()->flash('success', 'Foto Produk berhasil ditambahkan.');
+            $resizedImage = $this->_resizeImage($image, $fileName, $folder);
+
+            $params = array_merge(
+                [
+                    'product_id' => $product->id,
+                    'path' => $filePath,
+                ],
+                $resizedImage
+            );
+
+            if (ProductImage::create($params)) {
+                Session::flash('success', 'Image has been uploaded');
             } else {
-                Session()->flash('error', 'Foto Produk gagal ditambahkan.');
+                Session::flash('error', 'Image could not be uploaded');
             }
+
+            return redirect()->route('products.images');
+        }
+    }
+
+    private function _resizeImage($image, $fileName, $folder)
+    {
+        $resizedImage = [];
+
+        $smallImageFilePath = $folder . '/small/' . $fileName;
+        $size = explode('x', ProductImage::SMALL);
+        list($width, $height) = $size;
+
+        $smallImageFile = \Image::make($image)->fit($width, $height)->stream();
+        if (\Storage::put('public/' . $smallImageFilePath, $smallImageFile)) {
+            $resizedImage['small'] = $smallImageFilePath;
         }
 
-        return redirect()->route('products.images');
+        $mediumImageFilePath = $folder . '/medium/' . $fileName;
+        $size = explode('x', ProductImage::MEDIUM);
+        list($width, $height) = $size;
+
+        $mediumImageFile = \Image::make($image)->fit($width, $height)->stream();
+        if (\Storage::put('public/' . $mediumImageFilePath, $mediumImageFile)) {
+            $resizedImage['medium'] = $mediumImageFilePath;
+        }
+
+        $largeImageFilePath = $folder . '/large/' . $fileName;
+        $size = explode('x', ProductImage::LARGE);
+        list($width, $height) = $size;
+
+        $largeImageFile = \Image::make($image)->fit($width, $height)->stream();
+        if (\Storage::put('public/' . $largeImageFilePath, $largeImageFile)) {
+            $resizedImage['large'] = $largeImageFilePath;
+        }
+
+        $extraLargeImageFilePath  = $folder . '/xlarge/' . $fileName;
+        $size = explode('x', ProductImage::EXTRA_LARGE);
+        list($width, $height) = $size;
+
+        $extraLargeImageFile = \Image::make($image)->fit($width, $height)->stream();
+        if (\Storage::put('public/' . $extraLargeImageFilePath, $extraLargeImageFile)) {
+            $resizedImage['extra_large'] = $extraLargeImageFilePath;
+        }
+
+        return $resizedImage;
     }
 
     public function viewImage($id)

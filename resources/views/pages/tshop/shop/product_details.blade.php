@@ -58,11 +58,15 @@
                             <div class="product__big__images">
                                 <div class="portfolio-full-image tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active product-video-position" id="img-tab-1">
-                                        @if($product->productImages->first())
-                                        <img src="{{ asset('storage/'.$product->productImages->first()->path) }}" alt="{{ $product->name }}" width="440" height="590">
-                                        @else
-                                        <img src="{{ asset('tshop/assets/images/product-details/big-img/10.jpg') }}" alt="full-image">
-                                        @endif
+                                       <div class="easyzoom easyzoom--overlay">
+                                            @if ($product->productImages->first()->large && $product->productImages->first()->extra_large)
+                                            <a href="{{ asset('storage/'.$product->productImages->first()->extra_large) }}">
+                                                <img src="{{ asset('storage/'.$product->productImages->first()->extra_large) }}" alt="{{ $product->name }}">
+                                            </a>
+                                            @else
+                                            <img src="{{ asset('tshop/assets/images/product-details/big-img/10.jpg') }}" alt="full-image">
+                                            @endif
+                                       </div>
                                     </div>
                                 </div>
                             </div>
