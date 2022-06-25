@@ -86,11 +86,11 @@ class Product extends Model
             ->where('parent_id', null);
     }
 
-    public function scopePopular($query, $limit = 10)
+    public function scopePopular($query, $limit = 5)
     {
         $month = now()->format('m');
 
-        return $query->selectRaw('products.*, COUNT(order_items.id) as total_sold')
+        return $query->selectRaw('products.*, COUNT(order_items.id) AS total_sold')
             ->join('order_items', 'order_items.product_id', '=', 'products.id')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
             ->whereRaw(

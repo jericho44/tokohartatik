@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,6 +31,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $products = Product::popular()->get();
+        $this->data['products'] = $products;
         return view('pages.tshop.home', $this->data);
     }
 }
