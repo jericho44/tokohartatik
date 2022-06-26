@@ -64,7 +64,13 @@
                                                 <img src="{{ asset('storage/'.$product->productImages->first()->extra_large) }}" alt="{{ $product->name }}">
                                             </a>
                                             @else
-                                            <img src="{{ asset('tshop/assets/images/product-details/big-img/10.jpg') }}" alt="full-image">
+                                                @if ($product->productImages->first()->path)
+                                                    <a href="{{ asset('storage/'.$product->productImages->first()->path) }}">
+                                                        <img src="{{ asset('storage/'.$product->productImages->first()->path) }}" alt="{{ $product->name }}">
+                                                    </a>
+                                                @else
+                                                    <img src="{{ asset('tshop/assets/images/product-details/big-img/10.jpg') }}" alt="full-image">
+                                                @endif
                                             @endif
                                        </div>
                                     </div>

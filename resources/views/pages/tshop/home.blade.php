@@ -65,7 +65,7 @@
                         <div class="product-tab-list">
                             <!-- Nav tabs -->
                             <ul class="tab-style" role="tablist">
-                                <li>
+                                <li class="active">
                                     <a href="#home2" data-toggle="tab">
                                         <div class="tab-menu-text active">
                                             <h4>Popular</h4>
@@ -95,10 +95,10 @@
                                                         <ul class="product__action">
                                                             <li><a data-toggle="modal" data-target="#productModal"
                                                                     title="Quick View"
-                                                                    class="quick-view modal-view detail-link" href="#"><span
+                                                                    class="quick-view modal-view detail-link" product-slug="{{ $product->slug }}" href="#"><span
                                                                         class="ti-plus"></span></a></li>
                                                             <li><a title="Add TO Cart" href="cart.html"><span
-                                                                        class="ti-shopping-cart"></span></a></li>
+                                                                        class="ti-shopping-cart quick-view"></span></a></li>
                                                             <li><a title="Wishlist" href="wishlist.html"><span
                                                                         class="ti-heart"></span></a></li>
                                                         </ul>

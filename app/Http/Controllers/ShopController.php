@@ -172,4 +172,17 @@ class ShopController extends Controller
             'product' => $product,
         ]);
     }
+
+    public function quickView($slug)
+    {
+        $product = Product::active()->where('slug', $slug)->firstOrFail();
+        if ($product->configurable()) {
+            $this->data['colors'] = ProductAttributeValue::getAttributeOptions($product, 'color')->pluck('text_value', 'text_value');
+            $this->data['sizes'] = ProductAttributeValue::getAttributeOptions($product, 'size')->pluck('text_value', 'text_value');
+        }
+
+        $this->data['product'] = $product;
+
+        return view('pages.tshop.shop.quick_view', $this->data);
+    }
 }

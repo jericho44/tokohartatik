@@ -22,8 +22,8 @@ function getQuickView(product_slug) {
 		type: 'GET',
 		url: '/products/quick-view/' + product_slug,
 		success: function (response) {
-			$('#exampleModal').html(response);
-			$('#exampleModal').modal();
+			$('#productModal').html(response);
+			$('#productModal').modal();
 		}
 	});
 } 

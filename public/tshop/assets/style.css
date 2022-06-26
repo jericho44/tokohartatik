@@ -955,6 +955,38 @@ h3.widget-title-modal {
     background: #ff4136 none repeat scroll 0 0;
     color: #fff;
 }
+
+.quickview-plus-minus {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 5px;
+}
+.quickview-btn-cart > a {
+    background-color: #050035;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 0.08px;
+    line-height: 1;
+    padding: 17px 35px;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 5;
+}
+.quickview-btn-wishlist > a {
+    border: 1px solid #dcdcdc;
+    color: #727272;
+    display: inline-block;
+    font-size: 22px;
+    padding: 11px 18px 2px;
+    z-index: 9;
+}
+.quickview-btn-wishlist > a:hover {
+    border: 1px solid transparent;
+}
+.quickview-btn-cart {
+    margin: 0 30px;
+}
 /*------------------------------
   07. New Product Area
 --------------------------------*/
@@ -4711,16 +4743,135 @@ h5.panel-title {
     text-transform: capitalize;
 }
 
+.contact-btn {
+    background-color: #333;
+    border: 1px solid transparent;
+    color: #fff;
+    display: inline-block;
+    padding: 11px 25px 13px;
+    z-index: 1;
+    font-weight: 500;
+    text-transform: uppercase;
+}
 
+input.cart-plus-minus-box {
+    background: transparent none repeat scroll 0 0;
+    border: medium none;
+    float: left;
+    font-size: 16px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 25px;
+}
+.cart-plus-minus *::-moz-selection {
+    background: transparent none repeat scroll 0 0;
+    color: #333;
+    text-shadow: none;
+}
+.cart-plus-minus {
+    border: 1px solid #dcdcdc;
+    overflow: hidden;
+    padding: 12px 0 8px 5px;
+    width: 80px;
+}
 
+input.cart-plus-minus-box {
+    background: transparent none repeat scroll 0 0;
+    border: medium none;
+    float: left;
+    font-size: 16px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 25px;
+}
 
+.btn-hover {
+    position: relative;
+}
 
+.btn-hover::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scaleX(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+    z-index: -1;
+}
+.btn-hover:hover::before {
+    transform: scaleX(1);
+}
+.quickview-btn-wishlist .btn-hover:hover {
+    color: white;
+}
+.list-btn-style.btn-hover::before,
+.list-btn-wishlist.btn-hover::before {
+    border-radius: 50px;
+}
 
+.qwick-view-left {
+    min-width: 320px;
+}
 
+.qwick-view-left {
+    margin-right: 30px;
+}
 
+.quick-view-tab-content .tab-pane > img {
+    width: 100%;
+}
 
-
-
+.quick-view-list {
+    margin-top: 10px;
+}
+.quick-view-list a {
+    margin-right: 10px;
+}
+.quick-view-list a:last-child {
+    margin-right: 0px;
+}
+.qwick-view-content > h3 {
+    color: #707070;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+.qwick-view-content > p {
+    color: #545454;
+    margin-bottom: 25px;
+}
+.select-option-part label {
+    color: #707070;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+.select-option-part {
+    margin-bottom: 35px;
+}
+.modal-body .select-option-part select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #dcdcdc;
+    box-shadow: none;
+    color: #828282;
+    font-size: 14px;
+    height: 43px;
+    padding-left: 20px;
+    position: relative;
+    width: 100%;
+    background: rgba(0, 0, 0, 0) url("images/icons/4.png") no-repeat scroll right 20px center;
+    text-transform: capitalize;
+}
 
 
 
