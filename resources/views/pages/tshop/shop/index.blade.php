@@ -57,7 +57,7 @@
                                                 <li><a data-toggle="modal" data-target="#productModal" title="Quick View"
                                                         class="quick-view modal-view detail-link" product-slug="{{ $product->slug }}" href="#"><span
                                                             class="ti-plus"></span></a></li>
-                                                <li><a title="Add TO Cart" href="cart.html"><span
+                                                <li><a title="Add TO Cart" href="" class="add-to-card" product-id="{{ $product->id }}" product-type="{{ $product->type }}" product-slug="{{ $product->slug }}"><span
                                                             class="ti-shopping-cart"></span></a></li>
                                                 <li><a title="Wishlist" href="wishlist.html"><span
                                                             class="ti-heart"></span></a></li>
