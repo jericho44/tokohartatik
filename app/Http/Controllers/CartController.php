@@ -74,6 +74,10 @@ class CartController extends Controller
             $attributes['color'] = $params['color'];
         }
 
+        // dd($product->id);
+        $itemQuantity =  $this->_getItemQuantity(md5($product->id)) + $params['qty'];
+        $this->_checkProductInventory($product, $itemQuantity);
+
         $item = [
             'id' => md5($product->id),
             'name' => $product->name,
@@ -89,6 +93,36 @@ class CartController extends Controller
         return redirect()->route('product.details', $slug);
     }
 
+    private function _getItemQuantity($itemId)
+    {
+        $items = \Cart::getContent();
+        $itemQuantity = 0;
+        if ($items) {
+            foreach ($items as $item) {
+                if ($item->id == $itemId) {
+                    $itemQuantity = $item->quantity;
+                    break;
+                }
+            }
+        }
+
+        return $itemQuantity;
+    }
+
+    private function _checkProductInventory($product, $itemQuantity)
+    {
+        if ($product->productInventory->qty < $itemQuantity) {
+            return abort(403, 'The product ' . $product->sku . ' is out of stock');
+        }
+    }
+
+    private function _getCartItem($cartID)
+    {
+        $items = \Cart::getContent();
+
+        return $items[$cartID];
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -102,6 +136,9 @@ class CartController extends Controller
 
         if ($items = $params['items']) {
             foreach ($items as $cardID => $item) {
+                $cartItem = $this->_getCartItem($cardID);
+                $this->_checkProductInventory($cartItem->associatedModel, $item['quantity']);
+
                 \Cart::update($cardID, [
                     'quantity' => [
                         'relative' => false,

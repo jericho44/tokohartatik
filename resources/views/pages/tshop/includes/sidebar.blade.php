@@ -9,10 +9,9 @@
                     <img src="{{ asset('tshop/assets/images/logo/logo.png') }}" alt="logo">
                 </a>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetu adipisicing elit sed do eiusmod tempor incididunt ut
-                labore.</p>
         </div>
-        <ul class="sidebar__thumd">
+        @include('pages.tshop.includes.user_menu')
+        {{-- <ul class="sidebar__thumd">
             <li><a href="#"><img src="{{ asset('tshop/assets/images/sidebar-img/1.jpg') }}" alt="sidebar images"></a>
             </li>
             <li><a href="#"><img src="{{ asset('tshop/assets/images/sidebar-img/2.jpg') }}" alt="sidebar images"></a>
@@ -47,7 +46,7 @@
                     <li><a href="#"> POU : Pound </a></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
         <div class="offset__sosial__share">
             <h4 class="offset__title">Follow Us On Social</h4>
             <ul class="off__soaial__link">

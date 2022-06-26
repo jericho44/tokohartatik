@@ -165,7 +165,7 @@ function getQuickView(product_slug) {
 			},
 			error: function (xhr, textStatus, errorThrown) {
 				if (xhr.status == 401) {
-					$('#loginModal').modal();
+					window.location.href = "/login";
 				}
 			
 				if (xhr.status == 422) {

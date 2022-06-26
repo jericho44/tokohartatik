@@ -40,6 +40,8 @@ Route::get('payments/completed', 'PaymentController@completed')->name('payment.c
 Route::get('payments/failed', 'PaymentController@failed')->name('payments.failed');
 Route::get('payments/unfinish', 'PaymentController@unfinish')->name('payments.unfinish');
 
+Route::resource('favorites', 'FavoriteController');
+
 
 Route::group(
     ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']],

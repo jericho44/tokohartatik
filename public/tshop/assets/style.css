@@ -4873,8 +4873,31 @@ input.cart-plus-minus-box {
     text-transform: capitalize;
 }
 
-
-
+.sidebar-widget {
+    display: block;
+}
+.sidebar-title {
+    color: #383838;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+.sidebar-categories li a:hover {
+    color: #050035;
+}
+.sidebar-categories li {
+    margin-bottom: 16px;
+}
+.sidebar-categories li a {
+    color: #888888;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+}
+.sidebar-categories li a span {
+    float: right;
+}
 
 
 

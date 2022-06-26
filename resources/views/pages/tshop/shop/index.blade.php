@@ -59,7 +59,7 @@
                                                             class="ti-plus"></span></a></li>
                                                 <li><a title="Add TO Cart" href="" class="add-to-card" product-id="{{ $product->id }}" product-type="{{ $product->type }}" product-slug="{{ $product->slug }}"><span
                                                             class="ti-shopping-cart"></span></a></li>
-                                                <li><a title="Wishlist" href="wishlist.html"><span
+                                                <li><a title="Wishlist" href="" class="add-to-fav" product-slug="{{ $product->slug }}"><span
                                                             class="ti-heart"></span></a></li>
                                             </ul>
                                         </div>
