@@ -12,11 +12,11 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="bradcaump__inner text-center">
-                            <h2 class="bradcaump-title">Checkout</h2>
+                            <h2 class="bradcaump-title">Profile</h2>
                             <nav class="bradcaump-inner">
                                 <a class="breadcrumb-item" href="{{ route('home') }}">Home</a>
                                 <span class="brd-separetor">/</span>
-                                <span class="breadcrumb-item active">Cart</span>
+                                <span class="breadcrumb-item active">Profile</span>
                             </nav>
                         </div>
                     </div>

@@ -34,7 +34,8 @@ Route::post('orders/set-shipping', 'OrderController@setShipping')->name('orders.
 Route::get('orders/received/{orderID}', 'OrderController@received')->name('orders.received');
 Route::get('orders/invoice', 'OrderController@invoice')->name('orders.invoice');
 Route::get('orders/cities', 'OrderController@cities')->name('orders.cities');
-
+Route::get('orders', 'OrderController@index')->name('orders.index');
+Route::get('orders/{orderID}', 'OrderController@show')->name('orders.show');
 
 Route::post('payments/notification', 'PaymentController@notification')->name('payments.notification');
 Route::get('payments/completed', 'PaymentController@completed')->name('payment.completed');
