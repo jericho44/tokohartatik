@@ -35,12 +35,16 @@ Route::get('orders/received/{orderID}', 'OrderController@received')->name('order
 Route::get('orders/invoice', 'OrderController@invoice')->name('orders.invoice');
 Route::get('orders/cities', 'OrderController@cities')->name('orders.cities');
 
+
 Route::post('payments/notification', 'PaymentController@notification')->name('payments.notification');
 Route::get('payments/completed', 'PaymentController@completed')->name('payment.completed');
 Route::get('payments/failed', 'PaymentController@failed')->name('payments.failed');
 Route::get('payments/unfinish', 'PaymentController@unfinish')->name('payments.unfinish');
 
 Route::resource('favorites', 'FavoriteController');
+
+Route::get('/profile', 'Auth\ProfileController@index')->name('profile.add');
+Route::post('/profile', 'Auth\ProfileController@update')->name('profile.update');
 
 
 Route::group(

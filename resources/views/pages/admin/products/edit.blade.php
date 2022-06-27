@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="category" class="form-control-label">Kategori</label>
-                            {!! General::selectMultiLevel('category_ids[]', $categories, ['class' => 'form-control',
+                            {!! General::selectMultiLevel('category_ids[]', $categories, ['class' => 'custom-select',
                             'multiple' => true, 'selected'
                             => !empty(old('category_ids')) ? old('category_ids') : $categoryIDs, 'placeholder' => '--
                             Pilih Kategori --']) !!}
@@ -61,12 +61,12 @@
                         @endif
                         <div class="form-group">
                             <label for="short_description" class="form-control-label">Deskripsi Singkat</label>
-                            <textarea name="short_description" id="short_description" class="form-control"
+                            <textarea name="short_description" id="short_description" class="form-control h-100"
                                 rows="3">{{ old('short_description') ? old('short_description') : $product->short_description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="description" class="form-control-label">Deskripsi</label>
-                            <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') ? old('description') : $product->description }}</textarea>  @error('description')<div class="text-muted">{{ $message }}</div>@enderror
+                            <textarea name="description" id="description" class="form-control h-100" rows="3">{{ old('description') ? old('description') : $product->description }}</textarea>  @error('description')<div class="text-muted">{{ $message }}</div>@enderror
                         </div>
                         <div class="form-group">
                             <label for="status" class="form-control-label">Status</label>

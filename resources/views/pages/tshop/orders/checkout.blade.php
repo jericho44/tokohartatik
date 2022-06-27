@@ -71,20 +71,20 @@
                                     <div class="checkout-form-list">
                                         <label>Province<span class="required">*</span></label>
                                         {!! Form::select('province_id', $provinces, Auth::user()->province_id, ['id' =>
-                                        'province-id', 'placeholder' => '- Please Select - ', 'required' => true]) !!}
+                                        'province-id', 'placeholder' => '- Please Select - ', 'required' => true, 'class' => 'custom-select custom-select-lg mb-3']) !!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>City<span class="required">*</span></label>
                                         {!! Form::select('city_id', $cities, null, ['id' => 'city-id', 'placeholder' => '-
-                                        Please Select -', 'required' => true])!!}
+                                        Please Select -', 'required' => true, 'class' => 'custom-select custom-select-lg mb-3'])!!}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Postcode / Zip <span class="required">*</span></label>
-                                        {!! Form::number('postcode', null, ['required' => true, 'placeholder' => 'Postcode'])
+                                        {!! Form::number('postcode', null, ['required' => true, 'placeholder' => 'Postcode', 'class' => 'custom-select custom-select-lg mb-3'])
                                         !!}
                                     </div>
                                 </div>
@@ -145,20 +145,20 @@
                                             <div class="checkout-form-list">
                                                 <label>Province<span class="required">*</span></label>
                                                 {!! Form::select('shipping_province_id', $provinces, null, ['id' =>
-                                                'shipping-province', 'placeholder' => '- Please Select - ']) !!}
+                                                'shipping-province', 'placeholder' => '- Please Select - ', 'class' => 'custom-select custom-select-lg mb-3']) !!}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>City<span class="required">*</span></label>
                                                 {!! Form::select('shipping_city_id', [], null, ['id' =>
-                                                'shipping-city','placeholder' => '- Please Select -'])!!}
+                                                'shipping-city','placeholder' => '- Please Select -', 'class' => 'custom-select custom-select-lg mb-3'])!!}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Postcode / Zip <span class="required">*</span></label>
-                                                {!! Form::number('shipping_postcode', null, ['placeholder' => 'Postcode']) !!}
+                                                {!! Form::number('shipping_postcode', null, ['placeholder' => 'Postcode', 'class' => 'custom-select custom-select-lg mb-3']) !!}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -232,7 +232,7 @@
                                         </tr>
                                         <tr class="cart-subtotal">
                                             <th>Shipping Cost ({{ $totalWeight }} kg)</th>
-                                            <td><select id="shipping-cost-option" required name="shipping_service"></select>
+                                            <td><select id="shipping-cost-option" required name="shipping_service" class="custom-select custom-select-lg mb-3"></select>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
