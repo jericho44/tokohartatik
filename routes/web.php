@@ -87,10 +87,10 @@ Route::group(
         // Route::get('slides/{slideID}/up', 'SlideController@moveUp');
         // Route::get('slides/{slideID}/down', 'SlideController@moveDown');
 
-        // Route::get('reports/revenue', 'ReportController@revenue');
-        // Route::get('reports/product', 'ReportController@product');
-        // Route::get('reports/inventory', 'ReportController@inventory');
-        // Route::get('reports/payment', 'ReportController@payment');
+        Route::get('reports/revenue', 'ReportController@revenue')->name('reports.revenue');
+        Route::get('reports/product', 'ReportController@product')->name('reports.product');
+        Route::get('reports/inventory', 'ReportController@inventory')->name('reports.inventory');
+        Route::get('reports/payment', 'ReportController@payment')->name('reports.payment');
     }
 );
 

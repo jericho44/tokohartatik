@@ -8,9 +8,9 @@
             <li class="nav-item dropdown {{ request()->routeIs('dashboard', 'products.index' , 'products.edit' , 'products.create', 'categories.*' , 'attributes.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Catalog</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="index-0.html">Dashboard</a>
-                    </li>
+                    </li> --}}
                     <li class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('products.index') }}">Produk</a>
                     </li>
@@ -30,21 +30,38 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ request()->routeIs('reports.*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-image"></i><span>Report</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('reports.revenue') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('reports.revenue') }}">Pendapatan</a>
+                    </li>
+                    <li class="{{ request()->routeIs('reports.product') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('reports.product') }}">Produk</a>
+                    </li>
+                    <li class="{{ request()->routeIs('reports.inventory') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('reports.inventory') }}">Inventori</a>
+                    </li>
+                    <li class="{{ request()->routeIs('reports.payment') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('reports.payment') }}">Pembayaran</a>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Orders</li>
-            <li class="nav-item dropdown {{ request()->routeIs('orders.*') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ request()->routeIs('orders.*', 'shipments.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-user-lock"></i><span>Orders</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('orders.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('orders.index') }}">Penjualan</a>
                     </li>
                 </ul>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('shipments.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('shipments.index') }}">Pengiriman</a>
                     </li>
                 </ul>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('orders.trashed') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('orders.trashed') }}">Dihapus</a>
                     </li>
                 </ul>
