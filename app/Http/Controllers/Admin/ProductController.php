@@ -434,4 +434,18 @@ class ProductController extends Controller
 
         return redirect()->route('products.images');
     }
+
+    public function trashed()
+    {
+        $this->data['products'] = Product::onlyTrashed()->orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('pages.admin.products.trashed', $this->data);
+    }
+
+    public function restore($id)
+    {
+        Product::withTrashed()->find($id)->restore();
+
+        return redirect()->back();
+    }
 }

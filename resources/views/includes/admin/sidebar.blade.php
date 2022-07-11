@@ -47,6 +47,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ request()->routeIs('products.trashed') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-image"></i><span>Restore</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('products.trashed') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('products.trashed') }}">Produk</a>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Orders</li>
             <li class="nav-item dropdown {{ request()->routeIs('orders.*', 'shipments.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-user-lock"></i><span>Orders</span></a>

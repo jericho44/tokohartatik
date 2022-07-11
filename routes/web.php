@@ -60,6 +60,8 @@ Route::group(
         Route::post('products/images/{id}', 'ProductController@uploadImage')->name('products.upload_image');
         Route::get('products/images/{id}', 'ProductController@viewImage')->name('products.view_image');
         Route::delete('products/images/{id}', 'ProductController@removeImage')->name('products.remove_image');
+        Route::get('product/restore/{id}', 'ProductController@restore')->name('products.restore');
+        Route::get('product/trashed', 'ProductController@trashed')->name('products.trashed');
         Route::resource('products', 'ProductController');
 
         Route::delete('attributes/{id}/delete-permatent', 'AttributeController@deletePermanent')->name('attributes.deletePermanent');
