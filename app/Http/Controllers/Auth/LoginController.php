@@ -45,6 +45,7 @@ class LoginController extends Controller
             return view('auth.authenticate');
         }
 
+        Alert::success('Success Message', 'Login Behasil');
         return view('pages.tshop.auth.login');
     }
 }

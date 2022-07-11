@@ -55,7 +55,7 @@
                                             method="post">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm my-1">
+                                            <button class="btn btn-danger btn-sm my-1 delete-confirm">
                                                 <i class="fa fa-trash"></i> Delete
                                             </button>
                                         </form>
@@ -63,7 +63,7 @@
                                             method="post">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
+                                            <button class="btn btn-light btn-sm my-1 delete-confirm" style="cursor: no-drop" title="Delete Permanent">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

@@ -19,6 +19,7 @@ use Str;
 use DB;
 use Session;
 use Auth;
+use Alert;
 
 class ProductController extends Controller
 {
@@ -300,6 +301,7 @@ class ProductController extends Controller
             Session()->flash('success', 'Produk berhasil dihapus.');
         }
 
+        Alert::success('Success Message', 'Berhasil Menghapus Produk');
         return redirect()->route('products.index');
     }
 
