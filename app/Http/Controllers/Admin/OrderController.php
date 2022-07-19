@@ -47,18 +47,18 @@ class OrderController extends Controller
         $endDate = $request->input('end');
 
         if ($startDate && !$endDate) {
-            \Session::flash('error', 'The end date is required if the start date is present');
+            \Session::flash('error', 'Salah memasukkan tangal mulai.');
             return redirect('admin/orders');
         }
 
         if (!$startDate && $endDate) {
-            \Session::flash('error', 'The start date is required if the end date is present');
+            \Session::flash('error', 'Salah memasukkan tanggal selessai');
             return redirect('admin/orders');
         }
 
         if ($startDate && $endDate) {
             if (strtotime($endDate) < strtotime($startDate)) {
-                \Session::flash('error', 'The end date should be greater or equal than start date');
+                \Session::flash('error', 'Tanggal akhir harus lebih besar atau sama dengan tanggal mulai.');
                 return redirect('admin/orders');
             }
 
@@ -172,7 +172,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         if (!$order->isDelivered()) {
-            \Session::flash('error', 'Mark as complete the order can be done if the latest status is delivered');
+            \Session::flash('error', 'Tandai sebagai selesai pesanan dapat dilakukan jika status terbaru terkirim');
             return redirect('admin/orders');
         }
 
@@ -181,7 +181,7 @@ class OrderController extends Controller
         $order->approved_at = now();
 
         if ($order->save()) {
-            \Session::flash('success', 'The order has been marked as completed!');
+            \Session::flash('success', 'Pesanan telah ditandai sebagai selesai!');
             return redirect('admin/orders');
         }
     }

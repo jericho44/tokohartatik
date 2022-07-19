@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Alert;
+
 class LoginController extends Controller
 {
     /*
@@ -45,7 +47,6 @@ class LoginController extends Controller
             return view('auth.authenticate');
         }
 
-        Alert::success('Success Message', 'Login Behasil');
         return view('pages.tshop.auth.login');
     }
 }

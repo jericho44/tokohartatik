@@ -83,12 +83,6 @@
                                     <input class="button" name="update_cart" value="Update cart" type="submit">
                                     <a href="{{ route('shop') }}">Continue Shopping</a>
                                 </div>
-                                <div class="coupon">
-                                    <h3>Coupon</h3>
-                                    <p>Enter your coupon code if you have one.</p>
-                                    <input type="text" placeholder="Coupon code" />
-                                    <input type="submit" value="Apply Coupon" />
-                                </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12">
                                 <div class="cart_totals">
@@ -99,29 +93,6 @@
                                                 <th>Subtotal</th>
                                                 <td><span class="amount">Rp. {{ number_format(\Cart::getSubTotal()) }}</span></td>
                                             </tr>
-                                            <tr class="shipping">
-                                                <th>Shipping</th>
-                                                <td>
-                                                    <ul id="shipping_method">
-                                                        <li>
-                                                            <input type="radio" />
-                                                            <label>
-                                                                Flat Rate: <span class="amount">£7.00</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" />
-                                                            <label>
-                                                                Free Shipping
-                                                            </label>
-                                                        </li>
-                                                        <li></li>
-                                                    </ul>
-                                                    <p><a class="shipping-calculator-button" href="#">Calculate
-                                                            Shipping</a>
-                                                    </p>
-                                                </td>
-                                            </tr>
                                             <tr class="order-total">
                                                 <th>Total</th>
                                                 <td>
@@ -131,7 +102,7 @@
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a href="checkout.html">Proceed to Checkout</a>
+                                        <a href="{{ route('orders.checkout') }}">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>

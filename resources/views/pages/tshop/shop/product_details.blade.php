@@ -28,11 +28,11 @@
         <section class="htc__product__details pt--120 pb--100 bg__white">
             <div class="container">
                 <div class="row">
-                    {{ $product }}
+                    {{-- {{ $product }} --}}
                     <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                         <div class="product__details__container">
                             <!-- Start Small images -->
-                            <ul class="product__small__images" role="tablist">
+                            {{-- <ul class="product__small__images" role="tablist">
                                 <li role="presentation" class="pot-small-img active">
                                     <a href="#img-tab-1" role="tab" data-toggle="tab">
                                         <img src="{{ asset('tshop/assets/images/product-details/small-img/1.jpg') }}" alt="small-image">
@@ -53,7 +53,7 @@
                                         <img src="{{ asset('tshop/assets/images/product-details/small-img/2.jpg') }}" alt="small-image">
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                             <!-- End Small images -->
                             <div class="product__big__images">
                                 <div class="portfolio-full-image tab-content">
@@ -132,10 +132,10 @@
                             <ul class="pro__dtl__btn">
                                 <li class="buy__now__btn"><button>Add Cart</button></li>
                                 <li><a href="#"><span class="ti-heart"></span></a></li>
-                                <li><a href="#"><span class="ti-email"></span></a></li>
+                                {{-- <li><a href="#"><span class="ti-email"></span></a></li> --}}
                             </ul>
                             {!! Form::close() !!}
-                            <div class="pro__social__share">
+                            {{-- <div class="pro__social__share">
                                 <h2>Share :</h2>
                                 <ul class="pro__soaial__link">
                                     <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
@@ -143,7 +143,7 @@
                                     <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
                                     <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
         </section>
         <!-- End Product Details -->
         <!-- Start Product tab -->
-        <section class="htc__product__details__tab bg__white pb--120">
+        {{-- <section class="htc__product__details__tab bg__white pb--120">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -351,5 +351,5 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 @endsection

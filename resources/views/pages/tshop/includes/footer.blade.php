@@ -1,4 +1,4 @@
-<footer class="htc__foooter__area gray-bg">
+<footer class="htc__foooter__area gray-bg" id="section-contact">
     <div class="container">
         <div class="row">
             <div class="footer__container clearfix">

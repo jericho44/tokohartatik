@@ -31,7 +31,7 @@
           var name = $(this).data("name");
           event.preventDefault();
           swal({
-              title: `Are you sure you want to delete this record?`,
+              title: `Are you sure you want to delete?`,
               text: "",
               icon: "warning",
               buttons: true,

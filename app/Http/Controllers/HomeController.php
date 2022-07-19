@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class HomeController extends Controller
         parent::__construct();
 
         $this->data['search'] = null;
+        $this->data['categories'] = Category::parentCategories()
+            ->orderBy('name', 'ASC')
+            ->get();
     }
     /**
      * Create a new controller instance.

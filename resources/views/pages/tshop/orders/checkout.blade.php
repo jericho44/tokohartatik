@@ -178,8 +178,7 @@
                                 <div class="order-notes">
                                     <div class="checkout-form-list mrg-nn">
                                         <label>Order Notes</label>
-                                        {!! Form::textarea('note', null, ['cols' => 30, 'rows' => 10,'placeholder' => 'Notes
-                                        about your order, e.g. special notes for delivery.']) !!}
+                                        {!! Form::textarea('note', null, ['cols' => 30, 'rows' => 10,'placeholder' => 'Notes']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +245,7 @@
                             </div>
                             <div class="payment-method">
                                 <div class="payment-accordion">
-                                    <div class="panel-group" id="faq">
+                                    {{-- <div class="panel-group" id="faq">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true"
@@ -288,7 +287,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="order-button-payment">
                                         <input type="submit" value="Place order" />
                                     </div>

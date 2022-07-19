@@ -90,10 +90,6 @@ class ShipmentController extends Controller
             }
         );
 
-        // if ($order) {
-        //     $this->_sendEmailOrderShipped($shipment->order);
-        // }
-
         \Session::flash('success', 'The shipment has been updated');
         return redirect('admin/orders/' . $order->id);
     }

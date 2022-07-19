@@ -30,23 +30,23 @@
                                     <td>
                                         <a href="{{ route('attributes.edit', $attribute->id) }}" class="btn btn-warning"><i
                                             class="fas fa-edit"></i> Edit</a>
-                                        <a href="{{ route('attributes.options', $attribute->id) }}" class="btn btn-success"><i class="fas fa-plus"></i> Pilihan</a>
+                                        <a href="{{ route('attributes.options', $attribute->id) }}" class="btn btn-success"><i class="fas fa-plus"></i> Opsi</a>
                                         @can('delete_attributes')                                            
                                             <form action="{{ route('attributes.destroy', $attribute->id) }}" class="d-inline"
                                                 method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button class="btn btn-danger">
+                                                <button class="btn btn-danger delete-confirm">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>
                                             </form>
-                                            <form action="{{ route('attributes.deletePermanent', $attribute->id) }}" class="d-inline" method="post">
+                                            {{-- <form action="{{ route('attributes.deletePermanent', $attribute->id) }}" class="d-inline" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn btn-light btn-sm my-1" style="cursor: no-drop" title="Delete Permanent">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         @endcan
                                     </td>
                                 </tr>

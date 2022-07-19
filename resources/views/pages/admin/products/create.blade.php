@@ -45,16 +45,16 @@
                                     <div class="form-group">
                                         {!! Form::label($attribute->code, $attribute->name) !!}
                                         {!! Form::select($attribute->code. '[]', $attribute->attributeOptions->pluck('name','id'), null, ['class' =>
-                                        'form-control', 'multiple' => true]) !!}
+                                        'custom-select', 'multiple' => true]) !!}
                                     </div>
                                     @endforeach
                             @endif
                         </div>
                         @if ($products)
                             @if ($products->type == 'configurable')
-                                @include('admin.products.configurable')
+                                @include('pages.admin.products.configurable')
                             @else
-                                @include('admin.products.simple') 
+                                @include('pages.admin.products.simple') 
                             @endif                           
                         @endif
                         <div class="form-group">

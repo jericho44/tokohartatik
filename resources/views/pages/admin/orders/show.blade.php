@@ -51,7 +51,7 @@
 				</address>
 			</div>
 		</div>
-		<table class="table mt-3 table-striped table-responsive table-responsive-large" style="width:100%">
+		<table class="table mt-3 table-striped table-responsive-large" style="width:100%">
 			<thead>
 				<tr>
 					<th>#</th>

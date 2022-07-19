@@ -35,7 +35,7 @@
                                         method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger">
+                                        <button class="btn btn-danger delete-confirm">
                                             <i class="fa fa-trash"></i> Delete
                                         </button>
                                     </form>

@@ -25,7 +25,6 @@ class UserController extends Controller
         $users = User::with('roles')->latest()->paginate(10);
 
         return view('pages.admin.users.index', compact('users'));
-        // return dd($users);
     }
 
     /**

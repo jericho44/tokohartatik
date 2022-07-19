@@ -36,6 +36,7 @@
             <!-- End Cart Panel -->
         </div>
         <!-- End Offset Wrapper -->
+        @include('sweetalert::alert')
         @yield('content')
         <!-- Start Footer Area -->
         @include('pages.tshop.includes.footer')

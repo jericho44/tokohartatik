@@ -91,8 +91,10 @@ class ProductController extends Controller
         });
 
         if ($product) {
+            Alert::success('Success Message', 'Produk baru berhasil ditambahkan.');
             Session()->flash('success', 'Produk baru berhasil ditambahkan.');
         } else {
+            Alert::error('Error Message', 'Produk gagal ditambahkan');
             Session()->flash('error', 'Produk gagal ditambahkan');
         }
 
@@ -318,10 +320,8 @@ class ProductController extends Controller
 
     public function images()
     {
-        // $products = Product::orderBy('name', 'ASC')->paginate(10);
         $products = Product::with('productImages')->orderBy('name', 'ASC')->paginate(10);
 
-        // return dd($productImages);
         return view('pages.admin.products.images', compact('products'));
     }
 

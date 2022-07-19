@@ -35,20 +35,17 @@ class ReportController extends Controller
 
         if ($startDate && !$endDate) {
             \Session::flash('error', 'The end date is required if the start date is present');
-            // return redirect('admin/reports/revenue');
             return view('pages.admin.reports.revenue');
         }
 
         if (!$startDate && $endDate) {
             \Session::flash('error', 'The start date is required if the end date is present');
-            // return redirect('admin/reports/revenue');
             return view('pages.admin.reports.revenue');
         }
 
         if ($startDate && $endDate) {
             if (strtotime($endDate) < strtotime($startDate)) {
                 \Session::flash('error', 'The end date should be greater or equal than start date');
-                // return redirect('admin/reports/revenue');
                 return view('pages.admin.reports.revenue');
             }
 
@@ -58,7 +55,6 @@ class ReportController extends Controller
 
             if ($diff >= 31) {
                 \Session::flash('error', 'The number of days in the date ranges should be lower or equal to 31 days');
-                // return redirect('admin/reports/revenue');
                 return view('pages.admin.reports.revenue');
             }
         } else {

@@ -278,7 +278,7 @@
 .product__menu {
     text-align: center;
 }
-.product__menu button {
+.product__menu button,a {
     background: transparent none repeat scroll 0 0;
     border: 0 none;
     color: #666666;
@@ -289,16 +289,16 @@
     text-transform: uppercase;
     transition: all 0.4s ease 0s;
 }
-.product__filter--7 .product__menu button:first-child {
+.product__filter--7 .product__menu button:first-child, a:first-child {
     padding-left: 0;
 }
-.product__filter--7 .product__menu button:last-child {
+.product__filter--7 .product__menu button:last-child, a:last-child {
     padding-right: 0;
 }
-.product__menu button:hover {
+.product__menu button:hover, a:hover {
     color: #ff4136;
 }
-.product__menu button.is-checked {
+.product__menu button.is-checked, a.is-checked {
     color: #ff4136;
 }
 /* single product */
