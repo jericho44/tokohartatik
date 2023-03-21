@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown {{ request()->routeIs('reports.*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-image"></i><span>Report</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-list"></i><span>Report</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ request()->routeIs('reports.revenue') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('reports.revenue') }}">Pendapatan</a>
@@ -48,7 +48,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown {{ request()->routeIs('products.trashed') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-image"></i><span>Restore</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-trash"></i><span>Restore</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ request()->routeIs('products.trashed') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('products.trashed') }}">Produk</a>
@@ -57,7 +57,7 @@
             </li>
             <li class="menu-header">Orders</li>
             <li class="nav-item dropdown {{ request()->routeIs('orders.*', 'shipments.*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-user-lock"></i><span>Orders</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-solid fa-dollar-sign"></i><span>Orders</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ request()->routeIs('orders.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('orders.index') }}">Penjualan</a>
@@ -91,7 +91,7 @@
                 </ul>
             </li>
             @endcan
-            <li class="menu-header">Starter</li>
+            {{-- <li class="menu-header">Starter</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
@@ -100,6 +100,6 @@
                     <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
-            </li>
+            </li> --}}
     </aside>
 </div>

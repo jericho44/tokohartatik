@@ -14,10 +14,10 @@
                     <form action="{{ route('users.store') }}" method="post">
                     @csrf
                         <div class="form-group">
-                            <label for="name" class="form-control-label">Name</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" required>
-                            @error('name')<div class="text-muted">{{ $message }}</div>@enderror
+                            <label for="first_name" class="form-control-label">Name</label>
+                            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                                value="{{ old('first_name') }}" required>
+                            @error('first_name')<div class="text-muted">{{ $message }}</div>@enderror
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-control-label">Email</label>

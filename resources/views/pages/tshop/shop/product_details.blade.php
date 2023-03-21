@@ -94,7 +94,7 @@
                                 <span class="rat__qun">(Based on 0 Ratings)</span>
                             </div> --}}
                             <div class="pro__details">
-                                <p>{{ $product->description }}</p>
+                                <p>{!! $product->description !!}</p>
                             </div>
                             <ul class="pro__dtl__prize">
                                 {{-- <li class="old__prize">$15.21</li> --}}

@@ -46,7 +46,7 @@
                                         <div class="pro__thumb">
                                             <a href="#">
                                                 @if($product->productImages->first())
-                                                <img src="{{ asset('storage/'.$product->productImages->first()->path) }}" alt="{{ $product->name }}">
+                                                <img src="{{ asset('storage/'.$product->productImages->first()->path) }}" alt="{{ $product->name }}" style=" height: 300px">
                                                 @else
                                                 <img src="{{ asset('tshop/assets/images/product/1.jpg') }}" alt="product images">
                                                 @endif

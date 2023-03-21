@@ -3,7 +3,7 @@
         <div class="form-group">
             <label for="price" class="form-control-label">Harga*</label>
             <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
-                    value="{{ old('price')  ?  old('price')  :  number_format($product->price) }}" placeholder="Harga" required>
+                    value="{{ old('price')  ?  old('price')  :  $product->price }}" placeholder="Harga" required>
             </div>
     </div>
     <div class="col-md-4">
